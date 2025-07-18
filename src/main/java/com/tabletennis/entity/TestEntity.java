@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import java.time.LocalDateTime;
 
 @Entity
 public class TestEntity {
@@ -28,6 +29,6 @@ public class TestEntity {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name + "_" + LocalDateTime.now();
     }
 }
