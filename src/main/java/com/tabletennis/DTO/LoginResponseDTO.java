@@ -3,7 +3,7 @@ package com.tabletennis.DTO;
 import com.tabletennis.entity.User;
 
 public class LoginResponseDTO {
-    private Long idUser;
+    private int idUser;
     private String username;
     private String role;
 
@@ -13,7 +13,7 @@ public class LoginResponseDTO {
         this.role = roleName;
     }
 
-    public Long getIdUser() {
+    public int getIdUser() {
         return idUser;
     }
 

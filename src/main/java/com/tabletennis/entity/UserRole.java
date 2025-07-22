@@ -3,29 +3,24 @@ package com.tabletennis.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "UserRole")
+@Table(name = "UserRole")  // Fuerza el nombre exacto de la tabla
 public class UserRole {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idRole;
+    @Column(name = "idRole", nullable = false)
+    private int idRole;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "roleName", nullable = false)
     private String roleName;
 
-    public Long getIdRole() {
-        return idRole;
-    }
+    public UserRole() {}
 
-    public void setIdRole(Long idRole) {
-        this.idRole = idRole;
-    }
-
-    public String getRoleName() {
-        return roleName;
-    }
-
-    public void setRoleName(String roleName) {
+    public UserRole(String roleName) {
         this.roleName = roleName;
     }
+
+    public int getIdRole() { return idRole; }
+
+    public String getRoleName() { return roleName; }
+    public void setRoleName(String roleName) { this.roleName = roleName; }
 }

@@ -17,22 +17,16 @@ public class UserService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-//    public User register(User user) {
-//        String hashedPassword = passwordEncoder.encode(user.getPasswordHash());
-//        user.setPasswordHash(hashedPassword);
-//        return userRepository.save(user);
-//    }
-
     public User register(User user) {
-        String hashedPassword = passwordEncoder.encode(user.getPasswordHash());
+        String hashedPassword = passwordEncoder.encode(user.getPassword());  // Cambiado
         System.out.println("Hasheando contraseña: " + hashedPassword);
-        user.setPasswordHash(hashedPassword);
+        user.setPassword(hashedPassword);  // Cambiado
         return userRepository.save(user);
     }
 
-    public Optional<User> login(String username, String passwordHash) {
+    public Optional<User> login(String username, String password) {  // Cambiado parámetro
         return userRepository.findByUsername(username)
-                .filter(user -> passwordEncoder.matches(passwordHash, user.getPasswordHash()));
+                .filter(user -> passwordEncoder.matches(password, user.getPassword()));  // Cambiado
     }
 
     public Optional<User> getByUsername(String username) {
