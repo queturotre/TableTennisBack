@@ -1,6 +1,7 @@
 package com.tabletennis.entity;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "User")
@@ -17,6 +18,7 @@ public class User {
     private String username;
 
     @Column(name = "password", nullable = false)
+    @JsonIgnore
     private String password;
 
     @ManyToOne
@@ -39,5 +41,6 @@ public class User {
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
 
+    public int getIdRole(){ return idRole; }
     public void setIdRole(int idRole){ this.idRole = idRole; }
 }

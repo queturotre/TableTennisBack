@@ -43,14 +43,27 @@ public class UserController {
         }
     }
 
-    // Set roleId for a user / Only admin can make it, missing!
+    // Set roleId for a user / Only admin can make it
     @PutMapping("/{userId}/role")
-    public ResponseEntity<?> updateUserRole(@PathVariable Long userId, @RequestParam int newRoleId) {
+    public ResponseEntity<?> updateUserRole(@PathVariable int userId,
+                                            @RequestParam int newRoleId,
+                                            @RequestParam String adminUsername) {
+
+        Optional<User> adminUser = userService.getByUsername(adminUsername);
+
+        if (adminUser.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no encontrado");
+        }
+
+        if (adminUser.get().getIdRole() != 4) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Sólo administradores pueden cambiar roles");
+        }
+
         try {
             User updatedUser = userService.updateUserRole(userId, newRoleId);
             return ResponseEntity.ok(updatedUser);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al actualizar rol: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage());
         }
     }
 }

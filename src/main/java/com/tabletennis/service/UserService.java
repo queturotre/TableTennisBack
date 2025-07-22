@@ -18,7 +18,6 @@ public class UserService {
     private BCryptPasswordEncoder passwordEncoder;
 
     public User register(String username, String password) {
-        // Verificar si el usuario ya existe
         if (userRepository.findByUsername(username).isPresent()) {
             throw new RuntimeException("El usuario ya existe");
         }
@@ -36,7 +35,7 @@ public class UserService {
                 .filter(user -> passwordEncoder.matches(password, user.getPassword()));
     }
 
-    public User updateUserRole(Long userId, int newRoleId) {
+    public User updateUserRole(int userId, int newRoleId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
