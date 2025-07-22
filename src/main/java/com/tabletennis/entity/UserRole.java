@@ -3,7 +3,7 @@ package com.tabletennis.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "UserRole")  // Fuerza el nombre exacto de la tabla
+@Table(name = "UserRole")
 public class UserRole {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

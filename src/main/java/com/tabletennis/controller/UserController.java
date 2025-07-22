@@ -1,6 +1,7 @@
 package com.tabletennis.controller;
 
 import com.tabletennis.DTO.LoginRequestDTO;
+import com.tabletennis.DTO.SignupRequestDTO;
 import com.tabletennis.entity.User;
 import com.tabletennis.repository.UserRepository;
 import com.tabletennis.service.UserService;
@@ -23,8 +24,13 @@ public class UserController {
     private UserRepository userRepository;
 
     @PostMapping("/signup")
-    public User register(@RequestBody User user) {
-        return userService.register(user);
+    public ResponseEntity<?> register(@RequestBody SignupRequestDTO signupRequest) {
+        try {
+            User newUser = userService.register(signupRequest.getUsername(), signupRequest.getPassword());
+            return ResponseEntity.ok(newUser);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al crear usuario: " + e.getMessage());
+        }
     }
 
     @PostMapping("/signin")
@@ -34,6 +40,17 @@ public class UserController {
             return ResponseEntity.ok(user.get());
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
+        }
+    }
+
+    // Set roleId for a user / Only admin can make it, missing!
+    @PutMapping("/{userId}/role")
+    public ResponseEntity<?> updateUserRole(@PathVariable Long userId, @RequestParam int newRoleId) {
+        try {
+            User updatedUser = userService.updateUserRole(userId, newRoleId);
+            return ResponseEntity.ok(updatedUser);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al actualizar rol: " + e.getMessage());
         }
     }
 }

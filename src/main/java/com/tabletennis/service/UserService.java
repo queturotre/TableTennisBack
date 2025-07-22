@@ -17,16 +17,31 @@ public class UserService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    public User register(User user) {
-        String hashedPassword = passwordEncoder.encode(user.getPassword());  // Cambiado
-        System.out.println("Hasheando contraseña: " + hashedPassword);
-        user.setPassword(hashedPassword);  // Cambiado
+    public User register(String username, String password) {
+        // Verificar si el usuario ya existe
+        if (userRepository.findByUsername(username).isPresent()) {
+            throw new RuntimeException("El usuario ya existe");
+        }
+
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(passwordEncoder.encode(password));
+        user.setIdRole(3); // Rol por defecto: Player
+
         return userRepository.save(user);
     }
 
-    public Optional<User> login(String username, String password) {  // Cambiado parámetro
+    public Optional<User> login(String username, String password) {
         return userRepository.findByUsername(username)
-                .filter(user -> passwordEncoder.matches(password, user.getPassword()));  // Cambiado
+                .filter(user -> passwordEncoder.matches(password, user.getPassword()));
+    }
+
+    public User updateUserRole(Long userId, int newRoleId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        user.setIdRole(newRoleId);
+        return userRepository.save(user);
     }
 
     public Optional<User> getByUsername(String username) {

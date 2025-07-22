@@ -3,7 +3,7 @@ package com.tabletennis.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "User")  // Fuerza el nombre exacto de la tabla
+@Table(name = "User")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,18 +33,11 @@ public class User {
 
     public int getIdUser() { return idUser; }
 
-    public int getIdRole() { return idRole; }
-
-    public void setIdRole(int idRole){
-        this.idRole = idRole;
-    }
-
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
 
-    public String getPassword() { return password; }  // Getter actualizado
-    public void setPassword(String password) { this.password = password; }  // Setter actualizado
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
 
-    public UserRole getUserRole() { return userRole; }
-    public void setUserRole(UserRole userRole) { this.userRole = userRole; }
+    public void setIdRole(int idRole){ this.idRole = idRole; }
 }
