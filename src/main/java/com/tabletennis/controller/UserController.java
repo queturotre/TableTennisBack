@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/user")
-@CrossOrigin(origins = "*") // Allow requests from my Angular
+@CrossOrigin(origins = "*") // Allows requests from my Angular
 public class UserController {
 
     @Autowired
