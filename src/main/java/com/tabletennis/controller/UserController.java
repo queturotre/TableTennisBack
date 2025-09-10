@@ -45,10 +45,11 @@ public class UserController {
 
     // Set roleId for a user / Only admin can make it
     @PutMapping("/{userId}/role")
-    public ResponseEntity<?> updateUserRole(@PathVariable int userId,
-                                            @RequestParam int newRoleId,
-                                            @RequestParam String adminUsername) {
-
+    public ResponseEntity<?> updateUserRole(
+            @PathVariable int userId,
+            @RequestParam int newRoleId,
+            @RequestParam String adminUsername
+    ) {
         Optional<User> adminUser = userService.getByUsername(adminUsername);
 
         if (adminUser.isEmpty()) {
