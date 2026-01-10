@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name="Tournament")
-public class TournamentEntity {
+public class Tournament {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idTournament", nullable = false)
@@ -25,5 +25,5 @@ public class TournamentEntity {
     @Column(name = "description", nullable = true)
     private String description;
 
-
+    public Tournament(){}
 }
