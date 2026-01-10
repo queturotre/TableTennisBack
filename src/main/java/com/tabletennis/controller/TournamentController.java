@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/get-tournaments")
+@RequestMapping("/api/user/get-tournaments")
 public class TournamentController {
     private final TournamentService tournamentService;
 

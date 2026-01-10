@@ -8,7 +8,7 @@ public class Tournament {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idTournament", nullable = false)
-    private int idTournament;
+    private Integer idTournament;
 
     @ManyToOne
     @JoinColumn(name = "idType", nullable = false)
@@ -16,25 +16,25 @@ public class Tournament {
 
     @ManyToOne
     @JoinColumn(name = "idWinner") // It may be null when the tournament hasn't finished.
-    private Player idWinner;
+    private Player winner;  // Changed from idWinner to winner
 
     @ManyToOne
     @JoinColumn(name = "idStructure", nullable = false)
-    private TournamentStructure idStructure;
+    private TournamentStructure structure;  // Changed from idStructure to structure
 
     @Column(name = "name", nullable = false, length = 100)
     private String name;
 
-    @Column(name = "description", nullable = true, length = 255)
+    @Column(name = "description", length = 255)
     private String description;
 
     public Tournament(){}
 
-    public int getIdTournament() {
+    public Integer getIdTournament() {
         return idTournament;
     }
 
-    public void setIdTournament(int idTournament) {
+    public void setIdTournament(Integer idTournament) {
         this.idTournament = idTournament;
     }
 
@@ -46,20 +46,20 @@ public class Tournament {
         this.tournamentType = tournamentType;
     }
 
-    public Player getIdWinner() {
-        return idWinner;
+    public Player getWinner() {  // Changed getter name
+        return winner;
     }
 
-    public void setIdWinner(Player idWinner) {
-        this.idWinner = idWinner;
+    public void setWinner(Player winner) {  // Changed setter name
+        this.winner = winner;
     }
 
-    public TournamentStructure getIdStructure() {
-        return idStructure;
+    public TournamentStructure getStructure() {  // Changed getter name
+        return structure;
     }
 
-    public void setIdStructure(TournamentStructure idStructure) {
-        this.idStructure = idStructure;
+    public void setStructure(TournamentStructure structure) {  // Changed setter name
+        this.structure = structure;
     }
 
     public String getName() {
