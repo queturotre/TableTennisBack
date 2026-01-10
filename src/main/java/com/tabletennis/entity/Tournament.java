@@ -10,20 +10,71 @@ public class Tournament {
     @Column(name = "idTournament", nullable = false)
     private int idTournament;
 
-    @Column(name = "idType", nullable = false)
-    private int idType;
+    @ManyToOne
+    @JoinColumn(name = "idType", nullable = false)
+    private TournamentType tournamentType;
 
-    @Column(name = "idWinner", nullable = true)
+    @ManyToOne
+    @JoinColumn(name = "idWinner") // It may be null when the tournament hasn't finished.
     private int idWinner;
 
-    @Column(name = "idStructure", nullable = false)
-    private int idStructure;
+    @ManyToOne
+    @JoinColumn(name = "idStructure", nullable = false)
+    private TournamentStructure idStructure;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, length = 100)
     private String name;
 
-    @Column(name = "description", nullable = true)
+    @Column(name = "description", nullable = true, length = 255)
     private String description;
 
     public Tournament(){}
+
+    public int getIdTournament() {
+        return idTournament;
+    }
+
+    public void setIdTournament(int idTournament) {
+        this.idTournament = idTournament;
+    }
+
+    public TournamentType getTournamentType() {
+        return tournamentType;
+    }
+
+    public void setTournamentType(TournamentType tournamentType) {
+        this.tournamentType = tournamentType;
+    }
+
+    public int getIdWinner() {
+        return idWinner;
+    }
+
+    public void setIdWinner(int idWinner) {
+        this.idWinner = idWinner;
+    }
+
+    public TournamentStructure getIdStructure() {
+        return idStructure;
+    }
+
+    public void setIdStructure(TournamentStructure idStructure) {
+        this.idStructure = idStructure;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
