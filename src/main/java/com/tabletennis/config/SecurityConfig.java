@@ -16,6 +16,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers("/api/user/signup").permitAll()
                         .requestMatchers("/api/user/signin").permitAll()
+                        .requestMatchers("/api/user/get-tournaments").permitAll()
                         .requestMatchers("/api/user/{userId}/role").permitAll()
                         .requestMatchers("/api/**").authenticated()
                         .anyRequest().authenticated()

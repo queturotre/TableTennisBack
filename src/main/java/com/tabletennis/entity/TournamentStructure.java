@@ -7,8 +7,8 @@ import jakarta.persistence.*;
 public class TournamentStructure {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idTournament", nullable = false)
-    private int idTournament;
+    @Column(name = "idStructure", nullable = false)
+    private int idStructure;
 
     @ManyToOne
     @JoinColumn(name = "idType", nullable = false)
@@ -24,12 +24,12 @@ public class TournamentStructure {
 
     public TournamentStructure(){}
 
-    public int getIdTournament() {
-        return idTournament;
+    public int getIdStructure() {
+        return idStructure;
     }
 
-    public void setIdTournament(int idTournament) {
-        this.idTournament = idTournament;
+    public void setIdStructure(int idStructure) {
+        this.idStructure = idStructure;
     }
 
     public TournamentType getTournamentType() {
