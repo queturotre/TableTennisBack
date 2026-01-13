@@ -8,19 +8,19 @@ public class Modality {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idModality", nullable = false)
-    private int idTournament;
+    private int idModality;
 
     @Column(length = 50)
     private String name;
 
     public Modality(){}
 
-    public int getIdTournament() {
-        return idTournament;
+    public int getIdModality() {
+        return idModality;
     }
 
-    public void setIdTournament(int idTournament) {
-        this.idTournament = idTournament;
+    public void setIdModality(int idModality) {
+        this.idModality = idModality;
     }
 
     public String getName() {
