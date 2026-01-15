@@ -19,11 +19,11 @@ public class CategoryDTO {
         this.id = id;
     }
 
-    public String getType() {
+    public String getCategory() {
         return category;
     }
 
-    public void setType(String category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 }

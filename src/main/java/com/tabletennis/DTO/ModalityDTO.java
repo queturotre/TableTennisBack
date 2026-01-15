@@ -19,11 +19,11 @@ public class ModalityDTO {
         this.id = id;
     }
 
-    public String getType() {
+    public String getModality() {
         return modality;
     }
 
-    public void setType(String modality) {
+    public void setModality(String modality) {
         this.modality = modality;
     }
 }
