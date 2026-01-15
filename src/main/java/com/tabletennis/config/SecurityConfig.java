@@ -25,6 +25,7 @@ public class SecurityConfig {
                     .requestMatchers("/api/user/signin").permitAll()
                     .requestMatchers("/api/user/get-tournaments").permitAll()
                     .requestMatchers("/api/user/tournament-types").permitAll()
+                    .requestMatchers("/api/user/categories").permitAll()
                     .requestMatchers("/api/user/{userId}/role").permitAll()
                     .requestMatchers("/api/**").authenticated()
                     .anyRequest().authenticated()
