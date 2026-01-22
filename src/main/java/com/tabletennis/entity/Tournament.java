@@ -16,11 +16,11 @@ public class Tournament {
 
     @ManyToOne
     @JoinColumn(name = "idWinner") // It may be null when the tournament hasn't finished.
-    private Player winner;  // Changed from idWinner to winner
+    private Player winner;
 
     @ManyToOne
     @JoinColumn(name = "idStructure", nullable = false)
-    private TournamentStructure structure;  // Changed from idStructure to structure
+    private TournamentStructure structure;
 
     @Column(name = "name", nullable = false, length = 100)
     private String name;

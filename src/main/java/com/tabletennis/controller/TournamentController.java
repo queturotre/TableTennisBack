@@ -1,17 +1,18 @@
 package com.tabletennis.controller;
 
+import com.tabletennis.DTO.CreateTournamentDTO;
 import com.tabletennis.DTO.TournamentListDTO;
+import com.tabletennis.entity.Tournament;
 import com.tabletennis.service.TournamentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/user/get-tournaments")
+@RequestMapping("/api/user")
 public class TournamentController {
     private final TournamentService tournamentService;
 
@@ -20,9 +21,19 @@ public class TournamentController {
         this.tournamentService = tournamentService;
     }
 
-    @GetMapping
+    @GetMapping("/get-tournaments")
     public ResponseEntity<List<TournamentListDTO>> getAllTournaments() {
         List<TournamentListDTO> tournaments = tournamentService.getAllTournamentsWithDetails();
         return ResponseEntity.ok(tournaments);
+    }
+
+    @PostMapping("/create-tournament")
+    public ResponseEntity<Tournament> createTournament(@RequestBody CreateTournamentDTO dto) {
+        try {
+            Tournament tournament = tournamentService.createTournament(dto);
+            return ResponseEntity.status(HttpStatus.CREATED).body(tournament);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
     }
 }
