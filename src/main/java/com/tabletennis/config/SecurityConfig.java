@@ -2,6 +2,7 @@ package com.tabletennis.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
@@ -21,11 +22,10 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(authz -> authz
-                    .requestMatchers("/api/user/signup").permitAll()
-                    .requestMatchers("/api/user/signin").permitAll()
+                    .requestMatchers("/api/user/signup", "/api/user/signin").permitAll()
+                    .requestMatchers("/api/user/categories").permitAll()
                     .requestMatchers("/api/user/get-tournaments").permitAll()
                     .requestMatchers("/api/user/tournament-types").permitAll()
-                    .requestMatchers("/api/user/categories").permitAll()
                     .requestMatchers("/api/user/modalities").permitAll()
                     .requestMatchers("/api/user/{userId}/role").permitAll()
                     .requestMatchers("/api/**").authenticated()
