@@ -21,19 +21,13 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .authorizeHttpRequests(authz -> authz
-                .requestMatchers("/api/user/signup", "/api/user/signin").permitAll()
-                .requestMatchers("/api/user/get-tournaments").permitAll()
-                .requestMatchers("/api/user/categories").permitAll()
-                .requestMatchers("/api/user/tournament-types").permitAll()
-                .requestMatchers("/api/user/modalities").permitAll()
-                .requestMatchers("/api/user/{userId}/role").permitAll()
-                .requestMatchers("/api/user/create-tournament").permitAll()
-                .requestMatchers("/api/**").authenticated()
-                .anyRequest().authenticated()
-            )
-            .csrf(csrf -> csrf.disable())
-            .cors(cors -> cors.configurationSource(corsConfigurationSource));
+                .authorizeHttpRequests(authz -> authz
+                        .requestMatchers("/api/user/**").permitAll()  // ✅ Covers everything!
+                        .requestMatchers("/api/**").authenticated()
+                        .anyRequest().authenticated()
+                )
+                .csrf(csrf -> csrf.disable())
+                .cors(cors -> cors.configurationSource(corsConfigurationSource));
 
         return http.build();
     }

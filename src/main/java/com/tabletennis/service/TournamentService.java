@@ -1,6 +1,7 @@
 package com.tabletennis.service;
 
 import com.tabletennis.DTO.CreateTournamentDTO;
+import com.tabletennis.DTO.TournamentDetailDTO;
 import com.tabletennis.DTO.TournamentListDTO;
 import com.tabletennis.entity.*;
 import com.tabletennis.repository.*;
@@ -66,5 +67,25 @@ public class TournamentService {
         tournament.setWinner(null);
 
         return tournamentRepository.save(tournament);
+    }
+
+    @Transactional
+    public void deleteTournament(int idTournament) {
+        tournamentRepository.deleteById(idTournament);
+    }
+
+//    @Transactional
+//    public void deleteTournamentWithStructure(int idTournament) {
+//        Tournament tournament = tournamentRepository.findById(idTournament)
+//                .orElseThrow(() -> new RuntimeException("Tournament not found"));
+//
+//        structureRepository.deleteById(tournament.getStructure().getId());
+//        tournamentRepository.deleteById(idTournament);
+//    }
+
+    @Transactional(readOnly = true)
+    public TournamentDetailDTO getTournamentById(int idTournament) {
+        return tournamentRepository.findTournamentDetailById(idTournament)
+                .orElseThrow(() -> new RuntimeException("Tournament not found"));
     }
 }
