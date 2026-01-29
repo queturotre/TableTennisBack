@@ -13,7 +13,6 @@ import java.util.Optional;
 
 @Repository
 public interface TournamentRepository extends JpaRepository<Tournament, Integer> {
-
     @Query("SELECT new com.tabletennis.DTO.TournamentListDTO(" +
             "t.idTournament, t.name, tt.name, m.name, c.name) " +
             "FROM Tournament t " +
