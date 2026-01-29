@@ -10,7 +10,6 @@ import java.util.List;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
-
     @Query("SELECT new com.tabletennis.DTO.CategoryDTO(c.idCategory, c.name) " +
             "FROM Category c")
     List<CategoryDTO> findAllCategories();
