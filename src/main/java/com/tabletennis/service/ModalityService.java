@@ -10,7 +10,6 @@ import java.util.List;
 
 @Service
 public class ModalityService {
-
     private final ModalityRepository modalityRepository;
 
     @Autowired

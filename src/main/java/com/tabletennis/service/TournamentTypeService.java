@@ -10,7 +10,6 @@ import java.util.List;
 
 @Service
 public class TournamentTypeService {
-
     private final TournamentTypeRepository tournamentTypeRepository;
 
     @Autowired
