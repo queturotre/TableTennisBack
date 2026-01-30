@@ -25,9 +25,31 @@ public class Player {
     @Column(name = "advtg")
     private Integer advtg;
 
+    @Column(name = "hand", length = 1)
+    private String hand;
+
+    @ManyToOne
+    @JoinColumn(name = "idClub")
+    private Club club;
+
+    @ManyToOne
+    @JoinColumn(name = "idBlade")
+    private Blade blade;
+
+    @ManyToOne
+    @JoinColumn(name = "idBlackRubber")
+    private Rubber blackRubber;
+
+    @ManyToOne
+    @JoinColumn(name = "idColoredRubber")
+    private Rubber coloredRubber;
+
+    @ManyToOne
+    @JoinColumn(name = "idCoach")
+    private Coach coach;
+
     public Player() {}
 
-    // Getters and Setters
     public Integer getIdPlayer() {
         return idPlayer;
     }
@@ -74,5 +96,53 @@ public class Player {
 
     public void setAdvtg(Integer advtg) {
         this.advtg = advtg;
+    }
+
+    public String getHand() {
+        return hand;
+    }
+
+    public void setHand(String hand) {
+        this.hand = hand;
+    }
+
+    public Club getClub() {
+        return club;
+    }
+
+    public void setClub(Club club) {
+        this.club = club;
+    }
+
+    public Blade getBlade() {
+        return blade;
+    }
+
+    public void setBlade(Blade blade) {
+        this.blade = blade;
+    }
+
+    public Rubber getBlackRubber() {
+        return blackRubber;
+    }
+
+    public void setBlackRubber(Rubber blackRubber) {
+        this.blackRubber = blackRubber;
+    }
+
+    public Rubber getColoredRubber() {
+        return coloredRubber;
+    }
+
+    public void setColoredRubber(Rubber coloredRubber) {
+        this.coloredRubber = coloredRubber;
+    }
+
+    public Coach getCoach() {
+        return coach;
+    }
+
+    public void setCoach(Coach coach) {
+        this.coach = coach;
     }
 }
