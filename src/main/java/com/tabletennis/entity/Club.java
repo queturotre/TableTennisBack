@@ -10,10 +10,10 @@ public class Club {
     @Column(name = "idClub", nullable = false)
     private int idClub;
 
-    @Column(name = "name")
+    @Column(name = "name", length = 100)
     private String name;
 
-    @Column(name = "delegate")
+    @Column(name = "delegate", length = 30)
     private String delegate;
 
     public Club(){}

@@ -22,7 +22,7 @@ public class TournamentController {
         this.tournamentService = tournamentService;
     }
 
-    @GetMapping("/get-tournaments")
+    @GetMapping("/tournaments")
     public ResponseEntity<List<TournamentListDTO>> getAllTournaments() {
         List<TournamentListDTO> tournaments = tournamentService.getAllTournamentsWithDetails();
         return ResponseEntity.ok(tournaments);
@@ -38,7 +38,7 @@ public class TournamentController {
         }
     }
 
-    @GetMapping("/get-tournament-detail/{id}")
+    @GetMapping("/tournament-detail/{id}")
     public ResponseEntity<TournamentDetailDTO> getTournamentById(@PathVariable Integer id) {
         try {
             TournamentDetailDTO tournament = tournamentService.getTournamentById(id);

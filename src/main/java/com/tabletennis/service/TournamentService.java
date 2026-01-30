@@ -86,6 +86,6 @@ public class TournamentService {
     @Transactional(readOnly = true)
     public TournamentDetailDTO getTournamentById(int idTournament) {
         return tournamentRepository.findTournamentDetailById(idTournament)
-                .orElseThrow(() -> new RuntimeException("Tournament not found"));
+            .orElseThrow(() -> new RuntimeException("Tournament not found"));
     }
 }
