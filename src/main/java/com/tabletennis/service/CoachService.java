@@ -21,4 +21,9 @@ public class CoachService {
     public List<CoachDTO> findAllCoaches() {
         return coachRepository.findAllCoaches();
     }
+
+    @Transactional(readOnly = true)
+    public List<CoachDTO> findCoachesByClubId(int idClub) {
+        return coachRepository.findCoachesByClubId(idClub);
+    }
 }
