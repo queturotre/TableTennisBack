@@ -26,4 +26,21 @@ public interface PlayerRepository extends JpaRepository <Player, Integer>{
             "JOIN p.coloredRubber cr " +
             "JOIN p.coach co")
     List<PlayerDTO> findAllPlayers();
+
+    @Query("SELECT new com.tabletennis.DTO.PlayerDTO(" +
+            "p.idPlayer, p.name, p.height, p.weight, " +
+            "p.gender, c.name, " +
+            "CONCAT(b.brand, ' ', b.model), " +
+            "CONCAT(br.brand, ' ', br.model), " +
+            "CONCAT(cr.brand, ' ', cr.model), " +
+            "co.name, p.advtg, p.hand) " +
+            "FROM Player p " +
+            "JOIN p.club c " +
+            "JOIN p.blade b " +
+            "JOIN p.blackRubber br " +
+            "JOIN p.coloredRubber cr " +
+            "JOIN p.coach co " +
+            "JOIN p.playerTournaments pt " +
+            "WHERE pt.tournament.idTournament = :tournamentId")
+    List<PlayerDTO> findPlayersByTournament(@Param("tournamentId") Integer tournamentId);
 }

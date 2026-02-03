@@ -2,6 +2,8 @@ package com.tabletennis.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "Player")
 public class Player {
@@ -48,11 +50,20 @@ public class Player {
     @JoinColumn(name = "idCoach")
     private Coach coach;
 
+    @OneToMany(mappedBy = "player")
+    private Set<PlayerTournament> playerTournaments;
+
     public Player() {}
 
-    public Integer getIdPlayer() {
-        return idPlayer;
+    public Set<PlayerTournament> getPlayerTournaments() {
+        return playerTournaments;
     }
+
+    public void setPlayerTournaments(Set<PlayerTournament> playerTournaments) {
+        this.playerTournaments = playerTournaments;
+    }
+
+    public Integer getIdPlayer() { return idPlayer; }
 
     public void setIdPlayer(Integer idPlayer) {
         this.idPlayer = idPlayer;

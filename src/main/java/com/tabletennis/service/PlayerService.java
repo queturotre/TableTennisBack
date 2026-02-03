@@ -74,4 +74,9 @@ public class PlayerService {
 
         return playerRepository.save(player);
     }
+
+    @Transactional(readOnly = true)
+    public List<PlayerDTO> findPlayerByTournamentId(int idTournament) {
+        return playerRepository.findPlayersByTournament(idTournament);
+    }
 }

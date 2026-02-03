@@ -36,4 +36,14 @@ public class PlayerController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
+
+    @GetMapping("players-by-tournament/{id}")
+    public ResponseEntity<List<PlayerDTO>> getPlayersById(@PathVariable Integer id) {  // ✅ List<PlayerDTO>
+        try {
+            List<PlayerDTO> players = playerService.findPlayerByTournamentId(id);  // ✅ Lista
+            return ResponseEntity.ok(players);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
 }
