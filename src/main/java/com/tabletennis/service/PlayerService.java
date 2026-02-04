@@ -79,4 +79,6 @@ public class PlayerService {
     public List<PlayerDTO> findPlayerByTournamentId(int idTournament) {
         return playerRepository.findPlayersByTournament(idTournament);
     }
+
+    
 }

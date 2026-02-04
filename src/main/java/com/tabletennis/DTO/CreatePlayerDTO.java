@@ -13,13 +13,14 @@ public class CreatePlayerDTO {
     private Integer coach;
     private Integer advtg;
     private String hand;
+    private Integer idTournament;
 
     public CreatePlayerDTO(
         Integer idPlayer, String name, Integer height,
         Integer weight, String gender, Integer club,
         Integer blade, Integer blackRubber,
         Integer coloredRubber, Integer coach,
-        Integer advtg, String hand
+        Integer advtg, String hand, Integer idTournament
     ) {
         this.idPlayer = idPlayer;
         this.name = name;
@@ -33,6 +34,7 @@ public class CreatePlayerDTO {
         this.coach = coach;
         this.advtg = advtg;
         this.hand = hand;
+        this.idTournament = idTournament;
     }
 
     public CreatePlayerDTO(){}
@@ -131,5 +133,13 @@ public class CreatePlayerDTO {
 
     public void setHand(String hand) {
         this.hand = hand;
+    }
+
+    public Integer getIdTournament() {
+        return idTournament;
+    }
+
+    public void setIdTournament(Integer idTournament) {
+        this.idTournament = idTournament;
     }
 }
