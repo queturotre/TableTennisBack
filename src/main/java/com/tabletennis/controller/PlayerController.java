@@ -38,12 +38,22 @@ public class PlayerController {
     }
 
     @GetMapping("players-by-tournament/{id}")
-    public ResponseEntity<List<PlayerDTO>> getPlayersById(@PathVariable Integer id) {  // ✅ List<PlayerDTO>
+    public ResponseEntity<List<PlayerDTO>> getPlayersById(@PathVariable Integer id) {
         try {
-            List<PlayerDTO> players = playerService.findPlayerByTournamentId(id);  // ✅ Lista
+            List<PlayerDTO> players = playerService.findPlayerByTournamentId(id);
             return ResponseEntity.ok(players);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
+    @PostMapping("/create-player-in-tournament")
+    public ResponseEntity<Player> createPlayerInTournament(@RequestBody CreatePlayerDTO dto) {
+        try {
+            Player player = playerService.createPlayerInTournament(dto);
+            return ResponseEntity.status(HttpStatus.CREATED).body(player);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 }

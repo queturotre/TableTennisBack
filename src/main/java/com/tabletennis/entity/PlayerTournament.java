@@ -95,9 +95,7 @@ public class PlayerTournament {
         this.pointsWon = pointsWon;
     }
 
-    public Integer getPointsLost() {
-        return pointsLost;
-    }
+    public Integer getPointsLost() { return pointsLost; }
 
     public void setPointsLost(Integer pointsLost) {
         this.pointsLost = pointsLost;
@@ -147,9 +145,7 @@ public class PlayerTournament {
         return yellowRedCards;
     }
 
-    public void setYellowRedCards(Integer yellowRedCards) {
-        this.yellowRedCards = yellowRedCards;
-    }
+    public void setYellowRedCards(Integer yellowRedCards) { this.yellowRedCards = yellowRedCards; }
 
     public Integer getTimeOuts() {
         return timeOuts;
@@ -171,9 +167,7 @@ public class PlayerTournament {
         return pointsLostOnService;
     }
 
-    public void setPointsLostOnService(Integer pointsLostOnService) {
-        this.pointsLostOnService = pointsLostOnService;
-    }
+    public void setPointsLostOnService(Integer pointsLostOnService) { this.pointsLostOnService = pointsLostOnService; }
 
     public Integer getPointsWonOnReceive() {
         return pointsWonOnReceive;
@@ -187,9 +181,7 @@ public class PlayerTournament {
         return pointsLostOnReceive;
     }
 
-    public void setPointsLostOnReceive(Integer pointsLostOnReceive) {
-        this.pointsLostOnReceive = pointsLostOnReceive;
-    }
+    public void setPointsLostOnReceive(Integer pointsLostOnReceive) { this.pointsLostOnReceive = pointsLostOnReceive; }
 
     public static class PlayerTournamentId implements Serializable {
         private Integer player;
