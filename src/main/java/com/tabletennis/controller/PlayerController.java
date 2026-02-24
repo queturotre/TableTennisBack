@@ -56,4 +56,16 @@ public class PlayerController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
+
+    @DeleteMapping("/tournament/{tournamentId}/remove-player/{playerId}")
+    public ResponseEntity<Void> removePlayerFromTournament(
+            @PathVariable Integer tournamentId,
+            @PathVariable Integer playerId) {
+        try {
+            playerService.removePlayerFromTournament(playerId, tournamentId);
+            return ResponseEntity.noContent().build();  // 204 No Content
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
 }
