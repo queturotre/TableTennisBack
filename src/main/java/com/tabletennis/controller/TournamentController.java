@@ -47,4 +47,14 @@ public class TournamentController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
+
+    @DeleteMapping("/tournament-drop/{tournamentId}")
+    public ResponseEntity<Void> removeTournament(@PathVariable Integer tournamentId){
+        try {
+            tournamentService.deleteTournament(tournamentId);
+            return ResponseEntity.noContent().build();
+        } catch (RuntimeException e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
 }

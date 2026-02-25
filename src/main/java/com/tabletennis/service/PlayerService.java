@@ -149,10 +149,10 @@ public class PlayerService {
     @Transactional
     public void removePlayerFromTournament(Integer playerId, Integer tournamentId) {
         playerRepository.findById(playerId)
-                .orElseThrow(() -> new RuntimeException("Player not found"));
+            .orElseThrow(() -> new RuntimeException("Player not found"));
 
         tournamentRepository.findById(tournamentId)
-                .orElseThrow(() -> new RuntimeException("Tournament not found"));
+            .orElseThrow(() -> new RuntimeException("Tournament not found"));
 
         playerTournamentRepository.removePlayerFromTournament(playerId, tournamentId);
     }

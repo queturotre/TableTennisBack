@@ -71,17 +71,11 @@ public class TournamentService {
 
     @Transactional
     public void deleteTournament(int idTournament) {
-        tournamentRepository.deleteById(idTournament);
-    }
+        Tournament tournament = tournamentRepository.findById(idTournament)
+                .orElseThrow(() -> new RuntimeException("Tournament not found"));
 
-//    @Transactional
-//    public void deleteTournamentWithStructure(int idTournament) {
-//        Tournament tournament = tournamentRepository.findById(idTournament)
-//                .orElseThrow(() -> new RuntimeException("Tournament not found"));
-//
-//        structureRepository.deleteById(tournament.getStructure().getId());
-//        tournamentRepository.deleteById(idTournament);
-//    }
+        tournamentRepository.delete(tournament);
+    }
 
     @Transactional(readOnly = true)
     public TournamentDetailDTO getTournamentById(int idTournament) {
