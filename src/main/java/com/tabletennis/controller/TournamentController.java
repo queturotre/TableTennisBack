@@ -54,6 +54,8 @@ public class TournamentController {
             tournamentService.deleteTournament(tournamentId);
             return ResponseEntity.noContent().build();
         } catch (RuntimeException e){
+            e.printStackTrace();
+            System.out.println("Error: " + e.getMessage());
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }

@@ -18,6 +18,7 @@ public class TournamentService {
     private final TournamentTypeRepository typeRepository;
     private final ModalityRepository modalityRepository;
     private final CategoryRepository categoryRepository;
+    private final PlayerTournamentRepository playerTournamentRepository;
 
     @Autowired
     public TournamentService(
@@ -25,13 +26,15 @@ public class TournamentService {
         TournamentStructureRepository structureRepository,
         TournamentTypeRepository typeRepository,
         ModalityRepository modalityRepository,
-        CategoryRepository categoryRepository
+        CategoryRepository categoryRepository,
+        PlayerTournamentRepository playerTournamentRepository
     ) {
         this.tournamentRepository = tournamentRepository;
         this.structureRepository = structureRepository;
         this.typeRepository = typeRepository;
         this.modalityRepository = modalityRepository;
         this.categoryRepository = categoryRepository;
+        this.playerTournamentRepository = playerTournamentRepository;
     }
 
     @Transactional(readOnly = true)
@@ -73,6 +76,8 @@ public class TournamentService {
     public void deleteTournament(int idTournament) {
         Tournament tournament = tournamentRepository.findById(idTournament)
                 .orElseThrow(() -> new RuntimeException("Tournament not found"));
+
+        playerTournamentRepository.removePlayerFromTournament(idTournament, idTournament);
 
         tournamentRepository.delete(tournament);
     }
