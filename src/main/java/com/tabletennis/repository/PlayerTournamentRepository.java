@@ -12,4 +12,8 @@ public interface PlayerTournamentRepository extends JpaRepository<PlayerTourname
     @Modifying
     @Query("DELETE FROM PlayerTournament pt WHERE pt.player.idPlayer = :playerId AND pt.tournament.idTournament = :tournamentId")
     void removePlayerFromTournament(@Param("playerId") Integer playerId, @Param("tournamentId") Integer tournamentId);
+
+    @Modifying
+    @Query("DELETE FROM PlayerTournament pt WHERE pt.tournament.idTournament = :tournamentId")
+    void deleteByTournamentId(@Param("tournamentId") Integer tournamentId);
 }

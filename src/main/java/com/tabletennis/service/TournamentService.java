@@ -65,7 +65,6 @@ public class TournamentService {
         Tournament tournament = new Tournament();
         tournament.setName(dto.getName());
         tournament.setDescription(dto.getDescription());
-        tournament.setTournamentType(type);
         tournament.setStructure(structure);
         tournament.setWinner(null);
 
@@ -77,7 +76,7 @@ public class TournamentService {
         Tournament tournament = tournamentRepository.findById(idTournament)
                 .orElseThrow(() -> new RuntimeException("Tournament not found"));
 
-        playerTournamentRepository.removePlayerFromTournament(idTournament, idTournament);
+        playerTournamentRepository.deleteByTournamentId(idTournament);
 
         tournamentRepository.delete(tournament);
     }

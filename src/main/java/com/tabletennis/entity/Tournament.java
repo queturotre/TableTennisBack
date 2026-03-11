@@ -11,10 +11,6 @@ public class Tournament {
     private Integer idTournament;
 
     @ManyToOne
-    @JoinColumn(name = "idType", nullable = false)
-    private TournamentType tournamentType;
-
-    @ManyToOne
     @JoinColumn(name = "idWinner") // It may be null when the tournament hasn't finished.
     private Player winner;
 
@@ -36,14 +32,6 @@ public class Tournament {
 
     public void setIdTournament(Integer idTournament) {
         this.idTournament = idTournament;
-    }
-
-    public TournamentType getTournamentType() {
-        return tournamentType;
-    }
-
-    public void setTournamentType(TournamentType tournamentType) {
-        this.tournamentType = tournamentType;
     }
 
     public Player getWinner() {  // Changed getter name
