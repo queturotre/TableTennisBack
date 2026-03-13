@@ -46,23 +46,6 @@ public class PlayerService {
 
     @Transactional
     public Player createPlayer(CreatePlayerDTO dto) {
-        // Foreign keys
-        Club club = clubRepository.findById(dto.getClub())
-                .orElseThrow(() -> new RuntimeException("Club not found"));
-
-        Blade blade = bladeRepository.findById(dto.getBlade())
-                .orElseThrow(() -> new RuntimeException("Blade not found"));
-
-        Rubber blackRubber = rubberRepository.findById(dto.getBlackRubber())
-                .orElseThrow(() -> new RuntimeException("Black rubber not found"));
-
-        Rubber coloredRubber = rubberRepository.findById(dto.getColoredRubber())
-                .orElseThrow(() -> new RuntimeException("Colored rubber not found"));
-
-        Coach coach = coachRepository.findById(dto.getCoach())
-                .orElseThrow(() -> new RuntimeException("Coach not found"));
-
-        // Player object created
         Player player = new Player();
         player.setName(dto.getName());
         player.setHeight(dto.getHeight());
@@ -71,15 +54,65 @@ public class PlayerService {
         player.setAdvtg(dto.getAdvtg());
         player.setHand(dto.getHand());
 
-        //  Foreign keys set
-        player.setClub(club);
-        player.setBlade(blade);
-        player.setBlackRubber(blackRubber);
-        player.setColoredRubber(coloredRubber);
-        player.setCoach(coach);
+        if (dto.getClub() != null) {
+            player.setClub(clubRepository.findById(dto.getClub())
+                    .orElseThrow(() -> new RuntimeException("Club no encontrado")));
+        }
+
+        if (dto.getBlade() != null) {
+            player.setBlade(bladeRepository.findById(dto.getBlade())
+                    .orElseThrow(() -> new RuntimeException("Blade no encontrado")));
+        }
+
+        if (dto.getCoach() != null) {
+            player.setCoach(coachRepository.findById(dto.getCoach())
+                    .orElseThrow(() -> new RuntimeException("Coach no encontrado")));
+        }
+
+        if (dto.getBlade() != null) {
+            player.setBlade(bladeRepository.findById(dto.getBlade())
+                    .orElseThrow(() -> new RuntimeException("Blade no encontrado")));
+        }
 
         return playerRepository.save(player);
     }
+
+//    @Transactional
+//    public Player createPlayer(CreatePlayerDTO dto) {
+//        // Foreign keys
+//        Club club = clubRepository.findById(dto.getClub())
+//                .orElseThrow(() -> new RuntimeException("Club not found"));
+//
+//        Blade blade = bladeRepository.findById(dto.getBlade())
+//                .orElseThrow(() -> new RuntimeException("Blade not found"));
+//
+//        Rubber blackRubber = rubberRepository.findById(dto.getBlackRubber())
+//                .orElseThrow(() -> new RuntimeException("Black rubber not found"));
+//
+//        Rubber coloredRubber = rubberRepository.findById(dto.getColoredRubber())
+//                .orElseThrow(() -> new RuntimeException("Colored rubber not found"));
+//
+//        Coach coach = coachRepository.findById(dto.getCoach())
+//                .orElseThrow(() -> new RuntimeException("Coach not found"));
+//
+//        // Player object created
+//        Player player = new Player();
+//        player.setName(dto.getName());
+//        player.setHeight(dto.getHeight());
+//        player.setWeight(dto.getWeight());
+//        player.setGender(dto.getGender());
+//        player.setAdvtg(dto.getAdvtg());
+//        player.setHand(dto.getHand());
+//
+//        //  Foreign keys set
+//        player.setClub(club);
+//        player.setBlade(blade);
+//        player.setBlackRubber(blackRubber);
+//        player.setColoredRubber(coloredRubber);
+//        player.setCoach(coach);
+//
+//        return playerRepository.save(player);
+//    }
 
     @Transactional(readOnly = true)
     public List<PlayerDTO> findPlayerByTournamentId(int idTournament) {
