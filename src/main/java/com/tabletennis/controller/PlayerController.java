@@ -50,9 +50,10 @@ public class PlayerController {
     @PostMapping("/create-player-in-tournament")
     public ResponseEntity<Player> createPlayerInTournament(@RequestBody CreatePlayerDTO dto) {
         try {
-            Player player = playerService.createPlayerInTournament(dto);
+            Player player = playerService.createPlayer(dto);
             return ResponseEntity.status(HttpStatus.CREATED).body(player);
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
