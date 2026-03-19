@@ -22,5 +22,6 @@ public class UserRole {
     public int getIdRole() { return idRole; }
 
     public String getRoleName() { return roleName; }
+
     public void setRoleName(String roleName) { this.roleName = roleName; }
 }
