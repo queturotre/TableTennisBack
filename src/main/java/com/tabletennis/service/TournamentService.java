@@ -2,6 +2,7 @@ package com.tabletennis.service;
 
 import com.tabletennis.DTO.CreateTournamentDTO;
 import com.tabletennis.DTO.TournamentDetailDTO;
+import com.tabletennis.DTO.UpdateTournamentDTO;
 import com.tabletennis.DTO.TournamentListDTO;
 import com.tabletennis.entity.*;
 import com.tabletennis.repository.*;
@@ -85,5 +86,39 @@ public class TournamentService {
     public TournamentDetailDTO getTournamentById(int idTournament) {
         return tournamentRepository.findTournamentDetailById(idTournament)
             .orElseThrow(() -> new RuntimeException("Tournament not found"));
+    }
+
+    @Transactional
+    public TournamentDetailDTO updateTournament(Integer id, UpdateTournamentDTO dto) {
+        Tournament tournament = tournamentRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Tournament not found"));
+
+        tournament.setName(dto.getName());
+        tournament.setDescription(dto.getDescription());
+
+        TournamentStructure structure = structureRepository
+                .findByTypeModalityCategory(dto.getIdType(), dto.getIdModality(), dto.getIdCategory())
+                .orElseGet(() -> {
+                    TournamentStructure newStructure = new TournamentStructure(); // Crear una nueva estructura
+
+                    TournamentType type = typeRepository.findById(dto.getIdType())
+                            .orElseThrow(() -> new RuntimeException("Type not found"));
+                    Modality modality = modalityRepository.findById(dto.getIdModality())
+                            .orElseThrow(() -> new RuntimeException("Modality not found"));
+                    Category category = categoryRepository.findById(dto.getIdCategory())
+                            .orElseThrow(() -> new RuntimeException("Category not found"));
+
+                    newStructure.setTournamentType(type);
+                    newStructure.setModality(modality);
+                    newStructure.setCategory(category);
+
+                    return structureRepository.save(newStructure);
+                });
+
+        tournament.setStructure(structure);
+
+        tournamentRepository.save(tournament);
+
+        return getTournamentById(id);
     }
 }

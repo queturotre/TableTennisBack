@@ -1,40 +1,33 @@
 package com.tabletennis.DTO;
 
-public class TournamentDetailDTO {
-    private Integer id;
+public class UpdateTournamentDTO {
+    private Integer idTournament;
     private String name;
-    private String type;
-    private String modality;
-    private String category;
     private String description;
     private Integer idType;
     private Integer idModality;
     private Integer idCategory;
 
-    public TournamentDetailDTO(
-        Integer id, String name, String type,
-        String modality, String category, String description,
-        Integer idType, Integer idModality, Integer idCategory
-    ) {
-        this.id = id;
+    public UpdateTournamentDTO() {}
+
+    public UpdateTournamentDTO(
+            Integer idTournament, String name, String description,
+            Integer idType, Integer idModality, Integer idCategory
+    ){
+        this.idTournament = idTournament;
         this.name = name;
-        this.type = type;
-        this.modality = modality;
-        this.category = category;
         this.description = description;
         this.idType = idType;
         this.idModality = idModality;
         this.idCategory = idCategory;
     }
 
-    public TournamentDetailDTO() {}
-
-    public Integer getId() {
-        return id;
+    public Integer getIdTournament() {
+        return idTournament;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdTournament(Integer idTournament) {
+        this.idTournament = idTournament;
     }
 
     public String getName() {
@@ -43,30 +36,6 @@ public class TournamentDetailDTO {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getModality() {
-        return modality;
-    }
-
-    public void setModality(String modality) {
-        this.modality = modality;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 
     public String getDescription() {
