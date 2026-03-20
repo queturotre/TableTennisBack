@@ -20,13 +20,22 @@ public interface TournamentRepository extends JpaRepository<Tournament, Integer>
             "JOIN t.structure ts")
     List<TournamentListDTO> findAllTournamentsWithDetails();
 
+//  @Query("SELECT new com.tabletennis.DTO.TournamentDetailDTO(" +
+//          "t.idTournament, t.name, tt.name, m.name, c.name, t.description) " +
+//          "FROM Tournament t " +
+//          "JOIN t.structure ts " +
+//          "JOIN ts.tournamentType tt " +
+//          "JOIN ts.modality m " +
+//          "JOIN ts.category c " +
+//          "WHERE t.idTournament = :id")
+//  Optional<TournamentDetailDTO> findTournamentDetailById(@Param("id") Integer id);
+
     @Query("SELECT new com.tabletennis.DTO.TournamentDetailDTO(" +
-            "t.idTournament, t.name, tt.name, m.name, c.name, t.description) " +
+            "t.idTournament, t.name, ts.tournamentType.name, " +
+            "ts.modality.name, ts.category.name, t.description, " +
+            "ts.tournamentType.idType, ts.modality.idModality, ts.category.idCategory) " +
             "FROM Tournament t " +
             "JOIN t.structure ts " +
-            "JOIN ts.tournamentType tt " +
-            "JOIN ts.modality m " +
-            "JOIN ts.category c " +
             "WHERE t.idTournament = :id")
     Optional<TournamentDetailDTO> findTournamentDetailById(@Param("id") Integer id);
 }

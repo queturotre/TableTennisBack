@@ -3,6 +3,7 @@ package com.tabletennis.controller;
 import com.tabletennis.DTO.CreateTournamentDTO;
 import com.tabletennis.DTO.TournamentDetailDTO;
 import com.tabletennis.DTO.TournamentListDTO;
+import com.tabletennis.DTO.UpdateTournamentDTO;
 import com.tabletennis.entity.Tournament;
 import com.tabletennis.service.TournamentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,19 @@ public class TournamentController {
             e.printStackTrace();
             System.out.println("Error: " + e.getMessage());
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
+    @PutMapping("/tournament/{id}")
+    public ResponseEntity<TournamentDetailDTO> updateTournament(
+            @PathVariable Integer id,
+            @RequestBody UpdateTournamentDTO dto
+    ) {
+        try {
+            TournamentDetailDTO updated = tournamentService.updateTournament(id, dto);
+            return ResponseEntity.ok(updated);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
         }
     }
 }
