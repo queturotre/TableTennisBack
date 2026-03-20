@@ -60,11 +60,4 @@ public class TournamentController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
-
-//    @PutMapping("/tournament/{tournamentId}")
-//    public ResponseEntity<TournamentDetailDTO> updateTournament(@PathVariable int tournamentId){
-//        TournamentDetailDTO tournament = tournamentService.getTournamentById(tournamentId);
-//        TournamentDetailDTO updatedTournament = tournamentService.save(tournament);
-//        return ResponseEntity.ok(updatedTournament);
-//    }
 }
