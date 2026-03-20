@@ -61,7 +61,7 @@ public class TournamentController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/tournament/{id}")
     public ResponseEntity<TournamentDetailDTO> updateTournament(
             @PathVariable Integer id,
             @RequestBody UpdateTournamentDTO dto
