@@ -22,7 +22,6 @@ target/
 # application.properties con credenciales
 src/main/resources/application.properties
 
-
 # Archivos de IntelliJ
 .idea/
 *.iml
