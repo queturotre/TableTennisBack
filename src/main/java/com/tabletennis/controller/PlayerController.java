@@ -2,6 +2,7 @@ package com.tabletennis.controller;
 
 import com.tabletennis.DTO.CreatePlayerDTO;
 import com.tabletennis.DTO.PlayerDTO;
+import com.tabletennis.DTO.PlayerDetailDTO;
 import com.tabletennis.entity.Player;
 import com.tabletennis.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +68,29 @@ public class PlayerController {
             return ResponseEntity.noContent().build();  // 204 No Content
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
+    @GetMapping("/players/{id}")
+    public ResponseEntity<PlayerDetailDTO> getPlayerById(@PathVariable Integer id) {
+        try {
+            PlayerDetailDTO player = playerService.getPlayerById(id);
+            return ResponseEntity.ok(player);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping("/players/{id}")
+    public ResponseEntity<PlayerDetailDTO> updatePlayer(
+            @PathVariable Integer id,
+            @RequestBody CreatePlayerDTO dto
+    ) {
+        try {
+            PlayerDetailDTO updated = playerService.updatePlayer(id, dto);
+            return ResponseEntity.ok(updated);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
         }
     }
 }

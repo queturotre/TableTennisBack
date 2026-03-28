@@ -1,6 +1,7 @@
 package com.tabletennis.repository;
 
 import com.tabletennis.DTO.PlayerDTO;
+import com.tabletennis.DTO.PlayerDetailDTO;
 import com.tabletennis.entity.Player;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -8,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface PlayerRepository extends JpaRepository <Player, Integer>{
@@ -43,4 +45,17 @@ public interface PlayerRepository extends JpaRepository <Player, Integer>{
             "JOIN p.playerTournaments pt " +
             "WHERE pt.tournament.idTournament = :tournamentId")
     List<PlayerDTO> findPlayersByTournament(@Param("tournamentId") Integer tournamentId);
+
+    @Query("SELECT new com.tabletennis.DTO.PlayerDetailDTO(" +
+            "p.idPlayer, p.name, p.height, p.weight, p.gender, p.advtg, p.hand, " +
+            "c.name, b.model, br.model, cr.model, co.name, " +
+            "c.idClub, b.idBlade, br.idRubber, cr.idRubber, co.idCoach) " +
+            "FROM Player p " +
+            "LEFT JOIN p.club c " +
+            "LEFT JOIN p.blade b " +
+            "LEFT JOIN p.blackRubber br " +
+            "LEFT JOIN p.coloredRubber cr " +
+            "LEFT JOIN p.coach co " +
+            "WHERE p.idPlayer = :idPlayer")
+    Optional<PlayerDetailDTO> findPlayerDetailById(@Param("idPlayer") Integer idPlayer);
 }
