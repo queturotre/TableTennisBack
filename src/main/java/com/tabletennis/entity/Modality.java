@@ -13,6 +13,9 @@ public class Modality {
     @Column(length = 50)
     private String name;
 
+    @Column(length = 10)
+    private String allowedGenders;
+
     public Modality(){}
 
     public int getIdModality() {
@@ -29,5 +32,11 @@ public class Modality {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getAllowedGenders() { return allowedGenders; }
+
+    public void setAllowedGenders(String allowedGenders) {
+        this.allowedGenders = allowedGenders;
     }
 }

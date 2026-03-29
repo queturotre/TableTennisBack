@@ -10,11 +10,13 @@ public class TournamentDetailDTO {
     private Integer idType;
     private Integer idModality;
     private Integer idCategory;
+    private String allowedGenders;
 
     public TournamentDetailDTO(
         Integer id, String name, String type,
         String modality, String category, String description,
-        Integer idType, Integer idModality, Integer idCategory
+        Integer idType, Integer idModality, Integer idCategory,
+        String allowedGenders
     ) {
         this.id = id;
         this.name = name;
@@ -25,6 +27,7 @@ public class TournamentDetailDTO {
         this.idType = idType;
         this.idModality = idModality;
         this.idCategory = idCategory;
+        this.allowedGenders = allowedGenders;
     }
 
     public TournamentDetailDTO() {}
@@ -100,4 +103,8 @@ public class TournamentDetailDTO {
     public void setIdCategory(Integer idCategory) {
         this.idCategory = idCategory;
     }
+
+    public String getAllowedGenders() { return allowedGenders; }
+
+    public void setAllowedGenders(String allowedGenders) { this.allowedGenders = allowedGenders; }
 }
