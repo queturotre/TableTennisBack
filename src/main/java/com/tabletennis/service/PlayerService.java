@@ -103,7 +103,7 @@ public class PlayerService {
         player = playerRepository.save(player);
 
         if (dto.getIdTournament() != null) {
-            Tournament tournament = tournamentRepository.findById(dto.getIdTournament())
+            Tournament tournament = tournamentRepository.findById(dto.getIdTournament()) // Must be
                     .orElseThrow(() -> new RuntimeException("Tournament not found"));
 
             PlayerTournament playerTournament = new PlayerTournament();
