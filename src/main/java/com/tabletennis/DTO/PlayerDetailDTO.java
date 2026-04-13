@@ -9,11 +9,11 @@ public class PlayerDetailDTO {
     private Integer advtg;
     private String hand;
 
-    private String clubName;
+    private String club;
     private String bladeName;
     private String blackRubberName;
     private String coloredRubberName;
-    private String coachName;
+    private String coach;
 
     private Integer idClub;
     private Integer idBlade;
@@ -26,8 +26,8 @@ public class PlayerDetailDTO {
     public PlayerDetailDTO(
             Integer idPlayer, String name, Integer height, Integer weight,
             String gender, Integer advtg, String hand,
-            String clubName, String bladeName, String blackRubberName,
-            String coloredRubberName, String coachName,
+            String club, String bladeName, String blackRubberName,
+            String coloredRubberName, String coach,
             Integer idClub, Integer idBlade, Integer idBlackRubber,
             Integer idColoredRubber, Integer idCoach
     ) {
@@ -38,11 +38,11 @@ public class PlayerDetailDTO {
         this.gender = gender;
         this.advtg = advtg;
         this.hand = hand;
-        this.clubName = clubName;
+        this.club = club;
         this.bladeName = bladeName;
         this.blackRubberName = blackRubberName;
         this.coloredRubberName = coloredRubberName;
-        this.coachName = coachName;
+        this.coach = coach;
         this.idClub = idClub;
         this.idBlade = idBlade;
         this.idBlackRubber = idBlackRubber;
@@ -106,12 +106,12 @@ public class PlayerDetailDTO {
         this.hand = hand;
     }
 
-    public String getClubName() {
-        return clubName;
+    public String getClub() {
+        return club;
     }
 
-    public void setClubName(String clubName) {
-        this.clubName = clubName;
+    public void setClub(String club) {
+        this.club = club;
     }
 
     public String getBladeName() {
@@ -138,12 +138,12 @@ public class PlayerDetailDTO {
         this.coloredRubberName = coloredRubberName;
     }
 
-    public String getCoachName() {
-        return coachName;
+    public String getCoach() {
+        return coach;
     }
 
-    public void setCoachName(String coachName) {
-        this.coachName = coachName;
+    public void setCoach(String coach) {
+        this.coach = coach;
     }
 
     public Integer getIdClub() {
