@@ -32,6 +32,6 @@ public class ClubController {
             return ResponseEntity.status(HttpStatus.CREATED).body(club);
         } catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
+        } // Don't forget the error handling
     }
 }
