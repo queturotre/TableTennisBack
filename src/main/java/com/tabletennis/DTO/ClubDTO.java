@@ -5,13 +5,13 @@ public class ClubDTO {
     private String clubName;
     private String delegate;
 
-    private ClubDTO(int id, String clubName, String delegate) {
+    public ClubDTO(int id, String clubName, String delegate) {
         this.id = id;
         this.clubName = clubName;
         this.delegate = delegate;
     }
 
-    private ClubDTO() {}
+    public ClubDTO() {}
 
     public int getId() {
         return id;

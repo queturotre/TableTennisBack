@@ -29,7 +29,7 @@ public class ClubService {
             throw new RuntimeException("Club name is required");
         }
 
-        if (dto.getDelegate() == null || dto.getClubName().trim().isEmpty()){
+        if (dto.getDelegate() == null || dto.getDelegate().trim().isEmpty()){
             throw new RuntimeException("Club delegate is mandatory");
         }
 
