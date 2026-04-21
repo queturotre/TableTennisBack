@@ -3,6 +3,7 @@ package com.tabletennis.service;
 import com.tabletennis.DTO.CoachDTO;
 import com.tabletennis.entity.Club;
 import com.tabletennis.entity.Coach;
+import com.tabletennis.repository.ClubRepository;
 import com.tabletennis.repository.CoachRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,10 +14,15 @@ import java.util.List;
 @Service
 public class CoachService {
     private final CoachRepository coachRepository;
+    private final ClubRepository clubRepository;
 
     @Autowired
-    public CoachService(CoachRepository coachRepository) {
+    public CoachService(
+        CoachRepository coachRepository,
+        ClubRepository clubRepository
+    ) {
         this.coachRepository = coachRepository;
+        this.clubRepository = clubRepository;
     }
 
     @Transactional(readOnly = true)
@@ -32,7 +38,12 @@ public class CoachService {
     @Transactional
     public Coach createCoach(CoachDTO dto){
         Coach coach = new Coach();
-        Club club = new Club();
+
+        Club club = null;
+        if (dto.getIdClub() != null) {
+            club = clubRepository.findById(dto.getIdClub())
+                .orElseThrow(() -> new RuntimeException("Club not found"));
+        }
 
         coach.setClub(club);
         coach.setName(dto.getName());

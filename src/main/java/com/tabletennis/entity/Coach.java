@@ -12,7 +12,7 @@ public class Coach {
 
     @ManyToOne // Many Coaches to only one club
     @JoinColumn(name = "idClub", nullable = false)
-    private Club club;
+    private Club idClub;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -26,11 +26,11 @@ public class Coach {
     }
 
     public Club getClub() {
-        return club;
+        return idClub;
     }
 
-    public void setClub(Club club) {
-        this.club = club;
+    public void setClub(Club idClub) {
+        this.idClub = idClub;
     }
 
     public String getName() {

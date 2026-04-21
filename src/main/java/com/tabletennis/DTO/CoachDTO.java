@@ -2,7 +2,7 @@ package com.tabletennis.DTO;
 
 public class CoachDTO {
     private int id;
-    private int idClub;
+    private Integer idClub;
     private String name;
 
     public CoachDTO() {}
@@ -21,11 +21,11 @@ public class CoachDTO {
         this.id = id;
     }
 
-    public int getIdClub() {
+    public Integer getIdClub() {
         return idClub;
     }
 
-    public void setIdClub(int idClub) {
+    public void setIdClub(Integer idClub) {
         this.idClub = idClub;
     }
 

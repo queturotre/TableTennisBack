@@ -8,7 +8,6 @@ import java.util.Objects;
 @Table(name = "PlayerTournament")
 @IdClass(PlayerTournament.PlayerTournamentId.class)
 public class PlayerTournament {
-
     @Id
     @ManyToOne
     @JoinColumn(name = "idPlayer", nullable = false)
