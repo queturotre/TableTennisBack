@@ -6,11 +6,11 @@ import jakarta.persistence.*;
 @Table(name="Coach")
 public class Coach {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Sequential increment
     @Column(name = "idCoach", nullable = false)
     private int idCoach;
 
-    @ManyToOne
+    @ManyToOne // Many Coaches to only one club
     @JoinColumn(name = "idClub", nullable = false)
     private Club club;
 
