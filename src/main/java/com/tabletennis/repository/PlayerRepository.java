@@ -22,11 +22,11 @@ public interface PlayerRepository extends JpaRepository <Player, Integer>{
             "CONCAT(cr.brand, ' ', cr.model), " +
             "co.name, p.advtg, p.hand) " +
             "FROM Player p " +
-            "JOIN p.club c " +
-            "JOIN p.blade b " +
-            "JOIN p.blackRubber br " +
-            "JOIN p.coloredRubber cr " +
-            "JOIN p.coach co")
+            "LEFT JOIN p.club c " +
+            "LEFT JOIN p.blade b " +
+            "LEFT JOIN p.blackRubber br " +
+            "LEFT JOIN p.coloredRubber cr " +
+            "LEFT JOIN p.coach co")
     List<PlayerDTO> findAllPlayers();
 
     @Query("SELECT new com.tabletennis.DTO.PlayerDTO(" +
