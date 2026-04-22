@@ -1,7 +1,7 @@
 package com.tabletennis.controller;
 
 import com.tabletennis.DTO.ClubDTO;
-import com.tabletennis.entity.Club;
+import com.tabletennis.DTO.ClubResponseDTO;
 import com.tabletennis.service.ClubService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,12 +26,8 @@ public class ClubController {
     }
 
     @PostMapping("/club")
-    public ResponseEntity<Club> createClub(@RequestBody ClubDTO dto){
-        try{
-            Club club = clubService.createClub(dto);
-            return ResponseEntity.status(HttpStatus.CREATED).body(club);
-        } catch (Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        } // Don't forget the error handling
+    public ResponseEntity<ClubResponseDTO> createClub(@RequestBody ClubDTO dto) {
+        ClubResponseDTO club = clubService.createClub(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(club);
     }
 }

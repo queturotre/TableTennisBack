@@ -10,6 +10,8 @@ import java.util.List;
 
 @Repository
 public interface ClubRepository extends JpaRepository<Club, Integer>{
+    boolean existsByName(String name);
+
     @Query("SELECT new com.tabletennis.DTO.ClubDTO(c.idClub, c.name, c.delegate) FROM Club c")
     List<ClubDTO> findAllClubs();
 }

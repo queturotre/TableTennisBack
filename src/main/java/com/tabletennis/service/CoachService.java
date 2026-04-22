@@ -37,6 +37,14 @@ public class CoachService {
 
     @Transactional
     public Coach createCoach(CoachDTO dto){
+        if (dto.getIdClub() == null){
+            throw new RuntimeException("Club id is mandatory");
+        }
+
+        if(dto.getName() == null || dto.getName().trim().isEmpty()){
+            throw new RuntimeException("Coach name is required");
+        }
+
         Coach coach = new Coach();
 
         Club club = null;
