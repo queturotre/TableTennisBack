@@ -15,4 +15,6 @@ public interface CoachRepository extends JpaRepository<Coach, Integer> {
     @Query("SELECT new com.tabletennis.DTO.CoachDTO(c.idCoach, c.club.idClub, c.name) " +
             "FROM Coach c WHERE c.club.idClub = :idClub")
     List<CoachDTO> findCoachesByClubId(@Param("idClub") int idClub);
+
+    boolean existsByName(String name);
 }

@@ -8,29 +8,31 @@ public class Coach {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Sequential increment
     @Column(name = "idCoach", nullable = false)
-    private int idCoach;
+    private Integer idCoach;
 
     @ManyToOne // Many Coaches to only one club
     @JoinColumn(name = "idClub", nullable = false)
-    private Club idClub;
+    private Club club;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, length = 100)
     private String name;
 
-    public int getIdCoach() {
+    public Coach(){}
+
+    public Integer getIdCoach() {
         return idCoach;
     }
 
-    public void setIdCoach(int idCoach) {
+    public void setIdCoach(Integer idCoach) {
         this.idCoach = idCoach;
     }
 
     public Club getClub() {
-        return idClub;
+        return club;
     }
 
-    public void setClub(Club idClub) {
-        this.idClub = idClub;
+    public void setClub(Club club) {
+        this.club = club;
     }
 
     public String getName() {

@@ -1,8 +1,12 @@
 package com.tabletennis.service;
 
 import com.tabletennis.DTO.CoachDTO;
+import com.tabletennis.DTO.CoachResponseDTO;
+import com.tabletennis.DTO.CreateCoachDTO;
 import com.tabletennis.entity.Club;
 import com.tabletennis.entity.Coach;
+import com.tabletennis.exception.DuplicateResourceException;
+import com.tabletennis.exception.ResourceNotFoundException;
 import com.tabletennis.repository.ClubRepository;
 import com.tabletennis.repository.CoachRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,28 +40,34 @@ public class CoachService {
     }
 
     @Transactional
-    public Coach createCoach(CoachDTO dto){
+    public CoachResponseDTO createCoach(CreateCoachDTO dto){
         if (dto.getIdClub() == null){
             throw new RuntimeException("Club id is mandatory");
         }
 
-        if(dto.getName() == null || dto.getName().trim().isEmpty()){
-            throw new RuntimeException("Coach name is required");
+        if (coachRepository.existsByName(dto.getName())) {
+            throw new DuplicateResourceException("Coach with name '" + dto.getName() + "' already exists");
         }
-
-        Coach coach = new Coach();
 
         Club club = null;
         if (dto.getIdClub() != null) {
             club = clubRepository.findById(dto.getIdClub())
-                .orElseThrow(() -> new RuntimeException("Club not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Club with ID: "+dto.getIdClub()+" not found"));
         }
 
-        coach.setClub(club);
-        coach.setName(dto.getName());
+        if (dto.getName() == null || dto.getName().trim().isEmpty()) {
+            throw new IllegalArgumentException("Coach name is required");
+        }
 
+        Coach coach = new Coach();
+        coach.setName(dto.getName());
+        coach.setClub(club);
         coachRepository.save(coach);
 
-        return coach;
+        return new CoachResponseDTO(
+            coach.getIdCoach(),
+            coach.getName(),
+            club.getName()
+        );
     }
 }

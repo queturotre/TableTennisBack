@@ -1,6 +1,8 @@
 package com.tabletennis.controller;
 
 import com.tabletennis.DTO.CoachDTO;
+import com.tabletennis.DTO.CoachResponseDTO;
+import com.tabletennis.DTO.CreateCoachDTO;
 import com.tabletennis.entity.Coach;
 import com.tabletennis.service.CoachService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,12 +35,8 @@ public class CoachController {
     }
 
     @PostMapping("/coach")
-    public ResponseEntity<Coach> createCoach(@RequestBody CoachDTO dto){
-        try{
-            Coach coach = coachService.createCoach(dto);
-            return ResponseEntity.status(HttpStatus.CREATED).body(coach);
-        } catch (Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
+    public ResponseEntity<CoachResponseDTO> createCoach(@RequestBody CreateCoachDTO dto) {
+        CoachResponseDTO coach = coachService.createCoach(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(coach);
     }
 }
