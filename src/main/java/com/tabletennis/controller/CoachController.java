@@ -39,4 +39,10 @@ public class CoachController {
         CoachResponseDTO coach = coachService.createCoach(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(coach);
     }
+
+    @DeleteMapping("/coach/{id}")
+    public ResponseEntity<Void> deleteCoach(@PathVariable Integer id){
+        coachService.deleteCoach(id);
+        return ResponseEntity.noContent().build();
+    }
 }

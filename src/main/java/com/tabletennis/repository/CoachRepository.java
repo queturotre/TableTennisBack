@@ -16,5 +16,5 @@ public interface CoachRepository extends JpaRepository<Coach, Integer> {
             "FROM Coach c WHERE c.club.idClub = :idClub")
     List<CoachDTO> findCoachesByClubId(@Param("idClub") int idClub);
 
-    boolean existsByName(String name);
+    boolean existsByNameAndClub_IdClub(String name, Integer idClub);
 }

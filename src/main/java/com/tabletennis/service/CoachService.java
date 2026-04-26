@@ -45,19 +45,16 @@ public class CoachService {
             throw new RuntimeException("Club id is mandatory");
         }
 
-        if (coachRepository.existsByName(dto.getName())) {
-            throw new DuplicateResourceException("Coach with name '" + dto.getName() + "' already exists");
-        }
-
-        Club club = null;
-        if (dto.getIdClub() != null) {
-            club = clubRepository.findById(dto.getIdClub())
-                .orElseThrow(() -> new ResourceNotFoundException("Club with ID: "+dto.getIdClub()+" not found"));
-        }
-
         if (dto.getName() == null || dto.getName().trim().isEmpty()) {
             throw new IllegalArgumentException("Coach name is required");
         }
+
+        if (coachRepository.existsByNameAndClub_IdClub(dto.getName(), dto.getIdClub())) {
+            throw new DuplicateResourceException("Coach with name '" + dto.getName() + "' in club already exists");
+        }
+
+        Club club = clubRepository.findById(dto.getIdClub())
+                .orElseThrow(() -> new ResourceNotFoundException("Club with ID: " + dto.getIdClub() + " not found"));
 
         Coach coach = new Coach();
         coach.setName(dto.getName());
@@ -70,4 +67,10 @@ public class CoachService {
             club.getName()
         );
     }
+
+    @Transactional
+    public void deleteCoach(Integer id){
+        coachRepository.deleteById(id);
+    }
+
 }
