@@ -30,4 +30,10 @@ public class ClubController {
         ClubResponseDTO club = clubService.createClub(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(club);
     }
+
+    @DeleteMapping("/club/{id}")
+    public ResponseEntity<Void> deleteClub(@PathVariable Integer id){
+        clubService.deleteClub(id);
+        return ResponseEntity.noContent().build();
+    }
 }

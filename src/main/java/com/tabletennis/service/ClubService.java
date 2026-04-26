@@ -45,4 +45,9 @@ public class ClubService {
             club.getDelegate()
         );
     }
+
+    @Transactional
+    public void deleteClub(Integer id){
+        clubRepository.deleteById(id);
+    }
 }

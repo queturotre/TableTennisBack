@@ -64,8 +64,8 @@ public class TournamentController {
 
     @PutMapping("/tournament/{id}")
     public ResponseEntity<TournamentDetailDTO> updateTournament(
-            @PathVariable Integer id,
-            @RequestBody UpdateTournamentDTO dto
+        @PathVariable Integer id,
+        @RequestBody UpdateTournamentDTO dto
     ) {
         try {
             TournamentDetailDTO updated = tournamentService.updateTournament(id, dto);
