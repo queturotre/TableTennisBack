@@ -25,10 +25,6 @@ public class RubberService {
 
     @Transactional
     public RubberDTO createRubber(RubberDTO dto){
-        if(dto.getId() == null){
-            throw new RuntimeException("Rubber id is mandatory");
-        }
-
         if(dto.getBrand() == null){
             throw new RuntimeException("Brand is mandatory");
         }
@@ -54,5 +50,10 @@ public class RubberService {
             rubber.getModel(),
             rubber.getCode()
         );
+    }
+
+    @Transactional
+    public void deleteRubber(Integer id){
+        rubberRepository.deleteById(id);
     }
 }

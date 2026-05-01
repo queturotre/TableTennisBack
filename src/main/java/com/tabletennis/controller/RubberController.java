@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,5 +29,11 @@ public class RubberController {
     public ResponseEntity<RubberDTO> createRubber(@RequestBody RubberDTO dto){
         RubberDTO rubber = rubberService.createRubber(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(rubber);
+    }
+
+    @DeleteMapping("/rubber/{id}")
+    public ResponseEntity<Void> deleteRubber(@PathVariable Integer id){
+        rubberService.deleteRubber(id);
+        return ResponseEntity.noContent().build();
     }
 }
