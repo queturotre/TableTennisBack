@@ -16,6 +16,9 @@ public class Rubber {
     @Column(length = 50)
     private String model;
 
+    @Column(length = 50)
+    private String code;
+
     public Rubber(){}
 
     public int getIdRubber() {
@@ -41,4 +44,8 @@ public class Rubber {
     public void setModel(String model) {
         this.model = model;
     }
+
+    public String getCode() { return code; }
+
+    public void setCode(String code) { this.code = code; }
 }

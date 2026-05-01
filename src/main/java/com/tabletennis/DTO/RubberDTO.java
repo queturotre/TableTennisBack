@@ -4,11 +4,13 @@ public class RubberDTO {
     private int id;
     private String brand;
     private String model;
+    private String code;
 
-    public RubberDTO(int id, String brand, String model) {
+    public RubberDTO(int id, String brand, String model, String code) {
         this.id = id;
         this.brand = brand;
         this.model = model;
+        this.code = code;
     }
 
     public RubberDTO() {}
@@ -36,4 +38,8 @@ public class RubberDTO {
     public void setModel(String model) {
         this.model = model;
     }
+
+    public String getCode() { return code; }
+
+    public void setCode(String code) { this.code = code; }
 }

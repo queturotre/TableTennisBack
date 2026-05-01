@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface RubberRepository extends JpaRepository<Rubber, Integer>{
-    @Query("SELECT new com.tabletennis.DTO.RubberDTO(r.idRubber, r.brand, r.model) FROM Rubber r")
+    @Query("SELECT new com.tabletennis.DTO.RubberDTO(r.idRubber, r.brand, r.model, r.code) FROM Rubber r")
     List<RubberDTO> findAllRubbers();
 }
