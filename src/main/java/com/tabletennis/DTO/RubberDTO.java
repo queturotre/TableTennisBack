@@ -1,12 +1,12 @@
 package com.tabletennis.DTO;
 
 public class RubberDTO {
-    private int id;
+    private Integer id;
     private String brand;
     private String model;
     private String code;
 
-    public RubberDTO(int id, String brand, String model, String code) {
+    public RubberDTO(Integer id, String brand, String model, String code) {
         this.id = id;
         this.brand = brand;
         this.model = model;
@@ -15,11 +15,11 @@ public class RubberDTO {
 
     public RubberDTO() {}
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

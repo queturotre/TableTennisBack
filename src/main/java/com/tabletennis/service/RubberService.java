@@ -25,6 +25,22 @@ public class RubberService {
 
     @Transactional
     public RubberDTO createRubber(RubberDTO dto){
+        if(dto.getId() == null){
+            throw new RuntimeException("Rubber id is mandatory");
+        }
+
+        if(dto.getBrand() == null){
+            throw new RuntimeException("Brand is mandatory");
+        }
+
+        if(dto.getModel() == null){
+            throw new RuntimeException("Model id is mandatory");
+        }
+
+        if(dto.getCode() == null){
+            throw new RuntimeException("Code id is mandatory");
+        }
+
         Rubber rubber = new Rubber();
         rubber.setBrand(dto.getBrand());
         rubber.setModel(dto.getModel());
