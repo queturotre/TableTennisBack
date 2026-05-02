@@ -16,7 +16,7 @@ public class Rubber {
     @Column(length = 50)
     private String model;
 
-    @Column(length = 50)
+    @Column(length = 15)
     private String code;
 
     public Rubber(){}

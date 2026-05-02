@@ -33,10 +33,6 @@ public class RubberService {
             throw new RuntimeException("Model id is mandatory");
         }
 
-        if(dto.getCode() == null){
-            throw new RuntimeException("Code id is mandatory");
-        }
-
         Rubber rubber = new Rubber();
         rubber.setBrand(dto.getBrand());
         rubber.setModel(dto.getModel());
