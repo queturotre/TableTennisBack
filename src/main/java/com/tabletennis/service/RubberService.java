@@ -1,6 +1,7 @@
 package com.tabletennis.service;
 
 import com.tabletennis.DTO.RubberDTO;
+import com.tabletennis.DTO.UpdateRubberDTO;
 import com.tabletennis.entity.Rubber;
 import com.tabletennis.repository.RubberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,23 @@ public class RubberService {
     @Transactional
     public void deleteRubber(Integer id){
         rubberRepository.deleteById(id);
+    }
+
+    @Transactional
+    public UpdateRubberDTO updateRubber(UpdateRubberDTO dto, Integer id){
+        Rubber rubber = rubberRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Rubber not found"));
+
+        rubber.setBrand(dto.getBrand());
+        rubber.setModel(dto.getModel());
+        rubber.setCode(dto.getCode());
+
+        rubberRepository.save(rubber);
+
+        return new UpdateRubberDTO(
+                rubber.getBrand(),
+                rubber.getModel(),
+                rubber.getCode()
+        );
     }
 }
