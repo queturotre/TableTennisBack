@@ -21,7 +21,7 @@ public class ClubController {
         this.clubService = clubService;
     }
 
-    @GetMapping
+    @GetMapping("/clubs")
     public ResponseEntity<List<ClubDTO>> getAllClubs() {
         return ResponseEntity.ok(clubService.findAllClubs());
     }

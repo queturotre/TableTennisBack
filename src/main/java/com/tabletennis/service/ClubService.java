@@ -54,7 +54,7 @@ public class ClubService {
 
     @Transactional
     public UpdateClubDTO updateClub (UpdateClubDTO dto, Integer id){
-        if(dto.getName() == null || dto.getName().trim().isEmpty()){
+        if(dto.getClubName() == null || dto.getClubName().trim().isEmpty()){
             throw new IllegalArgumentException("Club name is required");
         }
 
@@ -64,7 +64,7 @@ public class ClubService {
 
         Club club = clubRepository.findById(id).orElseThrow(() -> new RuntimeException("Club not found"));
 
-        club.setName(dto.getName());
+        club.setName(dto.getClubName());
         club.setDelegate(dto.getDelegate());
 
         clubRepository.save(club);

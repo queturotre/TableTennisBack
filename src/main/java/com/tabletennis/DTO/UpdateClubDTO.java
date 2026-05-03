@@ -9,11 +9,11 @@ public class UpdateClubDTO {
         this.delegate = delegate;
     }
 
-    public String getName() {
+    public String getClubName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setClubName(String name) {
         this.name = name;
     }
 
