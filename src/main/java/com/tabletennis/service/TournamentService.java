@@ -55,12 +55,16 @@ public class TournamentService {
         Category category = categoryRepository.findById(dto.getIdCategory())
                 .orElseThrow(() -> new RuntimeException("Category not found"));
 
-        // Create and save TournamentStructure first
-        TournamentStructure structure = new TournamentStructure();
-        structure.setTournamentType(type);
-        structure.setModality(modality);
-        structure.setCategory(category);
-        structure = structureRepository.save(structure);
+        // Find or create, and use or save TournamentStructure first
+        TournamentStructure structure = structureRepository
+            .findByTypeModalityCategory(dto.getIdType(), dto.getIdModality(), dto.getIdCategory())
+            .orElseGet(() -> {
+                TournamentStructure newStructure = new TournamentStructure();
+                newStructure.setTournamentType(type);
+                newStructure.setModality(modality);
+                newStructure.setCategory(category);
+                return structureRepository.save(newStructure);
+            });
 
         // Create and save a Tournament
         Tournament tournament = new Tournament();
@@ -91,29 +95,29 @@ public class TournamentService {
     @Transactional
     public TournamentDetailDTO updateTournament(Integer id, UpdateTournamentDTO dto) {
         Tournament tournament = tournamentRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Tournament not found"));
+            .orElseThrow(() -> new RuntimeException("Tournament not found"));
 
         tournament.setName(dto.getName());
         tournament.setDescription(dto.getDescription());
 
         TournamentStructure structure = structureRepository
-                .findByTypeModalityCategory(dto.getIdType(), dto.getIdModality(), dto.getIdCategory())
-                .orElseGet(() -> {
-                    TournamentStructure newStructure = new TournamentStructure(); // Crear una nueva estructura
+            .findByTypeModalityCategory(dto.getIdType(), dto.getIdModality(), dto.getIdCategory())
+            .orElseGet(() -> {
+                TournamentStructure newStructure = new TournamentStructure(); // Crear una nueva estructura
 
-                    TournamentType type = typeRepository.findById(dto.getIdType())
-                            .orElseThrow(() -> new RuntimeException("Type not found"));
-                    Modality modality = modalityRepository.findById(dto.getIdModality())
-                            .orElseThrow(() -> new RuntimeException("Modality not found"));
-                    Category category = categoryRepository.findById(dto.getIdCategory())
-                            .orElseThrow(() -> new RuntimeException("Category not found"));
+                TournamentType type = typeRepository.findById(dto.getIdType())
+                        .orElseThrow(() -> new RuntimeException("Type not found"));
+                Modality modality = modalityRepository.findById(dto.getIdModality())
+                        .orElseThrow(() -> new RuntimeException("Modality not found"));
+                Category category = categoryRepository.findById(dto.getIdCategory())
+                        .orElseThrow(() -> new RuntimeException("Category not found"));
 
-                    newStructure.setTournamentType(type);
-                    newStructure.setModality(modality);
-                    newStructure.setCategory(category);
+                newStructure.setTournamentType(type);
+                newStructure.setModality(modality);
+                newStructure.setCategory(category);
 
-                    return structureRepository.save(newStructure);
-                });
+                return structureRepository.save(newStructure);
+            });
 
         tournament.setStructure(structure);
 

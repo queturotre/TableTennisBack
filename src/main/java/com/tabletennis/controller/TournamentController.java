@@ -42,36 +42,19 @@ public class TournamentController {
 
     @GetMapping("/tournament-detail/{id}")
     public ResponseEntity<TournamentDetailDTO> getTournamentById(@PathVariable Integer id) {
-        try {
-            TournamentDetailDTO tournament = tournamentService.getTournamentById(id);
-            return ResponseEntity.ok(tournament);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+        TournamentDetailDTO tournament = tournamentService.getTournamentById(id);
+        return ResponseEntity.ok(tournament);
     }
 
     @DeleteMapping("/tournament-drop/{tournamentId}")
     public ResponseEntity<Void> removeTournament(@PathVariable Integer tournamentId){
-        try {
-            tournamentService.deleteTournament(tournamentId);
-            return ResponseEntity.noContent().build();
-        } catch (RuntimeException e){
-            e.printStackTrace();
-            System.out.println("Error: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+        tournamentService.deleteTournament(tournamentId);
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/tournament/{id}")
-    public ResponseEntity<TournamentDetailDTO> updateTournament(
-        @PathVariable Integer id,
-        @RequestBody UpdateTournamentDTO dto
-    ) {
-        try {
-            TournamentDetailDTO updated = tournamentService.updateTournament(id, dto);
-            return ResponseEntity.ok(updated);
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<TournamentDetailDTO> updateTournament(@PathVariable Integer id, @RequestBody UpdateTournamentDTO dto) {
+        TournamentDetailDTO updated = tournamentService.updateTournament(id, dto);
+        return ResponseEntity.ok(updated);
     }
 }

@@ -1,7 +1,6 @@
 package com.tabletennis.DTO;
 
 public class UpdateTournamentDTO {
-    private Integer idTournament;
     private String name;
     private String description;
     private Integer idType;
@@ -11,23 +10,13 @@ public class UpdateTournamentDTO {
     public UpdateTournamentDTO() {}
 
     public UpdateTournamentDTO(
-            Integer idTournament, String name, String description,
-            Integer idType, Integer idModality, Integer idCategory
+        String name, String description,Integer idType, Integer idModality, Integer idCategory
     ){
-        this.idTournament = idTournament;
         this.name = name;
         this.description = description;
         this.idType = idType;
         this.idModality = idModality;
         this.idCategory = idCategory;
-    }
-
-    public Integer getIdTournament() {
-        return idTournament;
-    }
-
-    public void setIdTournament(Integer idTournament) {
-        this.idTournament = idTournament;
     }
 
     public String getName() {
