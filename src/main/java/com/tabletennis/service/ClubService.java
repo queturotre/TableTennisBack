@@ -2,6 +2,7 @@ package com.tabletennis.service;
 
 import com.tabletennis.DTO.ClubDTO;
 import com.tabletennis.DTO.ClubResponseDTO;
+import com.tabletennis.DTO.UpdateClubDTO;
 import com.tabletennis.entity.Club;
 import com.tabletennis.repository.ClubRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +50,28 @@ public class ClubService {
     @Transactional
     public void deleteClub(Integer id){
         clubRepository.deleteById(id);
+    }
+
+    @Transactional
+    public UpdateClubDTO updateClub (UpdateClubDTO dto, Integer id){
+        if(dto.getName() == null || dto.getName().trim().isEmpty()){
+            throw new IllegalArgumentException("Club name is required");
+        }
+
+        if (dto.getDelegate() == null || dto.getDelegate().trim().isEmpty()){
+            throw new IllegalArgumentException("Club delegate is mandatory");
+        }
+
+        Club club = clubRepository.findById(id).orElseThrow(() -> new RuntimeException("Club not found"));
+
+        club.setName(dto.getName());
+        club.setDelegate(dto.getDelegate());
+
+        clubRepository.save(club);
+
+        return new UpdateClubDTO(
+                club.getName(),
+                club.getDelegate()
+        );
     }
 }

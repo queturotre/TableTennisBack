@@ -2,6 +2,7 @@ package com.tabletennis.controller;
 
 import com.tabletennis.DTO.ClubDTO;
 import com.tabletennis.DTO.ClubResponseDTO;
+import com.tabletennis.DTO.UpdateClubDTO;
 import com.tabletennis.service.ClubService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/user/clubs")
+@RequestMapping("/api/user/")
 public class ClubController {
     private final ClubService clubService;
 
@@ -34,6 +35,12 @@ public class ClubController {
     @DeleteMapping("/club/{id}")
     public ResponseEntity<Void> deleteClub(@PathVariable Integer id){
         clubService.deleteClub(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/club/{id}")
+    public ResponseEntity<UpdateClubDTO> updateClub(@PathVariable Integer id, @RequestBody UpdateClubDTO dto){
+        clubService.updateClub(dto,id);
         return ResponseEntity.noContent().build();
     }
 }

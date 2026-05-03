@@ -56,6 +56,14 @@ public class RubberService {
 
     @Transactional
     public UpdateRubberDTO updateRubber(UpdateRubberDTO dto, Integer id){
+        if(dto.getBrand() == null){
+            throw new RuntimeException("Brand is mandatory");
+        }
+
+        if(dto.getModel() == null){
+            throw new RuntimeException("Model id is mandatory");
+        }
+
         Rubber rubber = rubberRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Rubber not found"));
 

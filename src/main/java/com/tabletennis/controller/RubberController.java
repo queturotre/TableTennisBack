@@ -40,7 +40,7 @@ public class RubberController {
 
     @PutMapping("/rubber/{id}")
     public ResponseEntity<RubberDTO> updateRubber(@PathVariable Integer id, @RequestBody UpdateRubberDTO dto){
-        UpdateRubberDTO updated = rubberService.updateRubber(dto, id);
+        rubberService.updateRubber(dto, id);
         return ResponseEntity.noContent().build();
     }
 }
