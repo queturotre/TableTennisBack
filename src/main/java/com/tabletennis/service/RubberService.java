@@ -74,9 +74,9 @@ public class RubberService {
         rubberRepository.save(rubber);
 
         return new UpdateRubberDTO(
-                rubber.getBrand(),
-                rubber.getModel(),
-                rubber.getCode()
+            rubber.getBrand(),
+            rubber.getModel(),
+            rubber.getCode()
         );
     }
 }
