@@ -54,7 +54,7 @@ public class CoachService {
         }
 
         Club club = clubRepository.findById(dto.getIdClub())
-                .orElseThrow(() -> new ResourceNotFoundException("Club with ID: " + dto.getIdClub() + " not found"));
+            .orElseThrow(() -> new ResourceNotFoundException("Club with ID: " + dto.getIdClub() + " not found"));
 
         Coach coach = new Coach();
         coach.setName(dto.getName());

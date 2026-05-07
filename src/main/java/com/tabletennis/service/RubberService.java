@@ -65,7 +65,7 @@ public class RubberService {
         }
 
         Rubber rubber = rubberRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Rubber not found"));
+            .orElseThrow(() -> new RuntimeException("Rubber not found"));
 
         rubber.setBrand(dto.getBrand());
         rubber.setModel(dto.getModel());

@@ -30,33 +30,20 @@ public class PlayerController {
 
     @PostMapping("/create-player")
     public ResponseEntity<Player> createPlayer(@RequestBody CreatePlayerDTO dto){
-        try {
-            Player player = playerService.createPlayer(dto);
-            return ResponseEntity.status(HttpStatus.CREATED).body(player);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
+        Player player = playerService.createPlayer(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(player);
     }
 
     @GetMapping("players-by-tournament/{id}")
     public ResponseEntity<List<PlayerDTO>> getPlayersById(@PathVariable Integer id) {
-        try {
-            List<PlayerDTO> players = playerService.findPlayerByTournamentId(id);
-            return ResponseEntity.ok(players);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+        List<PlayerDTO> players = playerService.findPlayerByTournamentId(id);
+        return ResponseEntity.ok(players);
     }
 
     @PostMapping("/create-player-in-tournament")
     public ResponseEntity<Player> createPlayerInTournament(@RequestBody CreatePlayerDTO dto) {
-        try {
-            Player player = playerService.createPlayer(dto);
-            return ResponseEntity.status(HttpStatus.CREATED).body(player);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
+        Player player = playerService.createPlayer(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(player);
     }
 
     @DeleteMapping("/tournament/{tournamentId}/remove-player/{playerId}")

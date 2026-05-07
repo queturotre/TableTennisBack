@@ -60,31 +60,31 @@ public class PlayerService {
         Club club = null;
         if (dto.getClub() != null) {
             club = clubRepository.findById(dto.getClub())
-                    .orElseThrow(() -> new RuntimeException("Club not found"));
+                .orElseThrow(() -> new RuntimeException("Club not found"));
         }
 
         Blade blade = null;
         if (dto.getBlade() != null) {
             blade = bladeRepository.findById(dto.getBlade())
-                    .orElseThrow(() -> new RuntimeException("Blade not found"));
+                .orElseThrow(() -> new RuntimeException("Blade not found"));
         }
 
         Rubber blackRubber = null;
         if (dto.getBlackRubber() != null) {
             blackRubber = rubberRepository.findById(dto.getBlackRubber())
-                    .orElseThrow(() -> new RuntimeException("Black rubber not found"));
+                .orElseThrow(() -> new RuntimeException("Black rubber not found"));
         }
 
         Rubber coloredRubber = null;
         if (dto.getColoredRubber() != null) {
             coloredRubber = rubberRepository.findById(dto.getColoredRubber())
-                    .orElseThrow(() -> new RuntimeException("Colored rubber not found"));
+                .orElseThrow(() -> new RuntimeException("Colored rubber not found"));
         }
 
         Coach coach = null;
         if (dto.getCoach() != null) {
             coach = coachRepository.findById(dto.getCoach())
-                    .orElseThrow(() -> new RuntimeException("Coach not found"));
+                .orElseThrow(() -> new RuntimeException("Coach not found"));
         }
 
         Player player = new Player();
@@ -104,7 +104,7 @@ public class PlayerService {
 
         if (dto.getIdTournament() != null) {
             Tournament tournament = tournamentRepository.findById(dto.getIdTournament()) // Must be
-                    .orElseThrow(() -> new RuntimeException("Tournament not found"));
+                .orElseThrow(() -> new RuntimeException("Tournament not found"));
 
             PlayerTournament playerTournament = new PlayerTournament();
             playerTournament.setPlayer(player);
