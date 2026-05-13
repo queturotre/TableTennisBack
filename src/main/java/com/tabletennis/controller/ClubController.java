@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/user/")
+@RequestMapping("/api/user")
 public class ClubController {
     private final ClubService clubService;
 
@@ -39,7 +39,7 @@ public class ClubController {
     }
 
     @PutMapping("/club/{id}")
-    public ResponseEntity<UpdateClubDTO> updateClub(@PathVariable Integer id, @RequestBody UpdateClubDTO dto){
+    public ResponseEntity<Void> updateClub(@PathVariable Integer id, @RequestBody UpdateClubDTO dto){
         clubService.updateClub(dto,id);
         return ResponseEntity.noContent().build();
     }

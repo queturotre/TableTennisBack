@@ -53,7 +53,7 @@ public class ClubService {
     }
 
     @Transactional
-    public UpdateClubDTO updateClub (UpdateClubDTO dto, Integer id){
+    public void updateClub (UpdateClubDTO dto, Integer id){
         if(dto.getClubName() == null || dto.getClubName().trim().isEmpty()){
             throw new IllegalArgumentException("Club name is required");
         }
@@ -68,10 +68,5 @@ public class ClubService {
         club.setDelegate(dto.getDelegate());
 
         clubRepository.save(club);
-
-        return new UpdateClubDTO(
-                club.getName(),
-                club.getDelegate()
-        );
     }
 }
