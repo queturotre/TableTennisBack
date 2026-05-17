@@ -27,7 +27,7 @@ public class Player {
     @Column(name = "advtg")
     private Integer advtg;
 
-    @Column(name = "hand", length = 1)
+    @Column(name = "hand", length = 10)
     private String hand;
 
     @ManyToOne

@@ -11,9 +11,6 @@ public class User {
     @Column(name = "idUser", nullable = false)
     private int idUser;
 
-    @Column(name = "idRole", nullable = false)
-    private int idRole;
-
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 
