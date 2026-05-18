@@ -15,7 +15,7 @@ public class CorsConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        // Allow requests from your Angular app
+        // Allow requests from Angular
         configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
 
         // Allow all HTTP methods (GET, POST, PUT, DELETE, etc.)
