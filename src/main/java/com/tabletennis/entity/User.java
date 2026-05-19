@@ -2,7 +2,12 @@ package com.tabletennis.entity;
 
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.*;
 
+@Getter
+@Setter
+@AllArgsConstructor
 @Entity
 @Table(name = "User")
 public class User {
@@ -14,8 +19,8 @@ public class User {
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 
-    @Column(name = "passwordHash", nullable = false)
     @JsonIgnore
+    @Column(name = "passwordHash", nullable = false)
     private String password;
 
     @ManyToOne
@@ -23,21 +28,4 @@ public class User {
     private UserRole userRole;
 
     public User() {}
-
-    public User(String username, String password, UserRole userRole) {
-        this.username = username;
-        this.password = password;
-        this.userRole = userRole;
-    }
-
-    public int getIdUser() { return idUser; }
-
-    public String getUsername() { return username; }
-    public void setUsername(String username) { this.username = username; }
-
-    public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
-
-    public int getIdRole(){ return idRole; }
-    public void setIdRole(int idRole){ this.idRole = idRole; }
 }

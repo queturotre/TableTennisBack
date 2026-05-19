@@ -1,7 +1,10 @@
 package com.tabletennis.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 
+@Getter
+@Setter
 @Entity
 @Table(name="Modality")
 public class Modality {
@@ -10,33 +13,11 @@ public class Modality {
     @Column(name = "idModality", nullable = false)
     private int idModality;
 
-    @Column(length = 50)
+    @Column(length = 50, nullable = false)
     private String name;
 
-    @Column(length = 10)
+    @Column(length = 10, nullable = false)
     private String allowedGenders;
 
     public Modality(){}
-
-    public int getIdModality() {
-        return idModality;
-    }
-
-    public void setIdModality(int idModality) {
-        this.idModality = idModality;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAllowedGenders() { return allowedGenders; }
-
-    public void setAllowedGenders(String allowedGenders) {
-        this.allowedGenders = allowedGenders;
-    }
 }

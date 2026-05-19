@@ -3,7 +3,10 @@ package com.tabletennis.entity;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
+import lombok.*;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "PlayerTournament")
 @IdClass(PlayerTournament.PlayerTournamentId.class)
@@ -60,127 +63,13 @@ public class PlayerTournament {
     @Column(name = "pointsLostOnReceive")
     private Integer pointsLostOnReceive = 0;
 
+    @Column(name = "setDifference")
+    private Integer setDifference = 0;
+
+    @Column(name = "pointDifference")
+    private Integer pointDifference = 0;
+
     public PlayerTournament() {}
-
-    public Player getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-
-    public Tournament getTournament() {
-        return tournament;
-    }
-
-    public void setTournament(Tournament tournament) {
-        this.tournament = tournament;
-    }
-
-    public Integer getGamesPlayed() {
-        return gamesPlayed;
-    }
-
-    public void setGamesPlayed(Integer gamesPlayed) {
-        this.gamesPlayed = gamesPlayed;
-    }
-
-    public Integer getPointsWon() {
-        return pointsWon;
-    }
-
-    public void setPointsWon(Integer pointsWon) {
-        this.pointsWon = pointsWon;
-    }
-
-    public Integer getPointsLost() { return pointsLost; }
-
-    public void setPointsLost(Integer pointsLost) {
-        this.pointsLost = pointsLost;
-    }
-
-    public Integer getSetsWon() {
-        return setsWon;
-    }
-
-    public void setSetsWon(Integer setsWon) {
-        this.setsWon = setsWon;
-    }
-
-    public Integer getSetsLost() {
-        return setsLost;
-    }
-
-    public void setSetsLost(Integer setsLost) {
-        this.setsLost = setsLost;
-    }
-
-    public Integer getMatchesWon() {
-        return matchesWon;
-    }
-
-    public void setMatchesWon(Integer matchesWon) {
-        this.matchesWon = matchesWon;
-    }
-
-    public Integer getMatchesLost() {
-        return matchesLost;
-    }
-
-    public void setMatchesLost(Integer matchesLost) {
-        this.matchesLost = matchesLost;
-    }
-
-    public Integer getYellowCards() {
-        return yellowCards;
-    }
-
-    public void setYellowCards(Integer yellowCards) {
-        this.yellowCards = yellowCards;
-    }
-
-    public Integer getYellowRedCards() {
-        return yellowRedCards;
-    }
-
-    public void setYellowRedCards(Integer yellowRedCards) { this.yellowRedCards = yellowRedCards; }
-
-    public Integer getTimeOuts() {
-        return timeOuts;
-    }
-
-    public void setTimeOuts(Integer timeOuts) {
-        this.timeOuts = timeOuts;
-    }
-
-    public Integer getPointsWonOnService() {
-        return pointsWonOnService;
-    }
-
-    public void setPointsWonOnService(Integer pointsWonOnService) {
-        this.pointsWonOnService = pointsWonOnService;
-    }
-
-    public Integer getPointsLostOnService() {
-        return pointsLostOnService;
-    }
-
-    public void setPointsLostOnService(Integer pointsLostOnService) { this.pointsLostOnService = pointsLostOnService; }
-
-    public Integer getPointsWonOnReceive() {
-        return pointsWonOnReceive;
-    }
-
-    public void setPointsWonOnReceive(Integer pointsWonOnReceive) {
-        this.pointsWonOnReceive = pointsWonOnReceive;
-    }
-
-    public Integer getPointsLostOnReceive() {
-        return pointsLostOnReceive;
-    }
-
-    public void setPointsLostOnReceive(Integer pointsLostOnReceive) { this.pointsLostOnReceive = pointsLostOnReceive; }
 
     public static class PlayerTournamentId implements Serializable {
         private Integer player;

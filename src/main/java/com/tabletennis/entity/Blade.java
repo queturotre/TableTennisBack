@@ -1,7 +1,10 @@
 package com.tabletennis.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 
+@Getter
+@Setter
 @Entity
 @Table(name="Blade")
 public class Blade {
@@ -17,28 +20,4 @@ public class Blade {
     private String model;
 
     public Blade(){}
-
-    public int getIdBlade() {
-        return idBlade;
-    }
-
-    public void setIdBlade(int idBlade) {
-        this.idBlade = idBlade;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
 }

@@ -3,6 +3,8 @@ package com.tabletennis.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "UserRole")
 public class UserRole {
@@ -19,10 +21,4 @@ public class UserRole {
     public UserRole(String roleName) {
         this.roleName = roleName;
     }
-
-    public int getIdRole() { return idRole; }
-
-    public String getRoleName() { return roleName; }
-
-    public void setRoleName(String roleName) { this.roleName = roleName; }
 }

@@ -1,7 +1,10 @@
 package com.tabletennis.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 
+@Getter
+@Setter
 @Entity
 @Table(name="Tournament")
 public class Tournament {
@@ -9,10 +12,6 @@ public class Tournament {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idTournament", nullable = false)
     private Integer idTournament;
-
-    @ManyToOne
-    @JoinColumn(name = "idWinner") // It may be null when the tournament hasn't finished.
-    private Player winner;
 
     @ManyToOne
     @JoinColumn(name = "idStructure", nullable = false)
@@ -24,45 +23,17 @@ public class Tournament {
     @Column(name = "description", length = 255)
     private String description;
 
+    @ManyToOne
+    @JoinColumn(name = "idWinnerPlayer") // It may be null when the tournament hasn't finished.
+    private Player winnerPlayer;
+
+    @ManyToOne
+    @JoinColumn(name = "idWinnerDouble")
+    private TournametDouble winnerDouble;
+
+    @ManyToOne
+    @JoinColumn(name = "idWinnerTeam")
+    private Team winnerTeam;
+
     public Tournament(){}
-
-    public Integer getIdTournament() {
-        return idTournament;
-    }
-
-    public void setIdTournament(Integer idTournament) {
-        this.idTournament = idTournament;
-    }
-
-    public Player getWinner() {  // Changed getter name
-        return winner;
-    }
-
-    public void setWinner(Player winner) {  // Changed setter name
-        this.winner = winner;
-    }
-
-    public TournamentStructure getStructure() {  // Changed getter name
-        return structure;
-    }
-
-    public void setStructure(TournamentStructure structure) {  // Changed setter name
-        this.structure = structure;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }

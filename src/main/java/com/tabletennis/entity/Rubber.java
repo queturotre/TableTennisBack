@@ -1,7 +1,10 @@
 package com.tabletennis.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 
+@Getter
+@Setter
 @Entity
 @Table(name="Rubber")
 public class Rubber {
@@ -10,42 +13,14 @@ public class Rubber {
     @Column(name = "idRubber", nullable = false)
     private int idRubber;
 
-    @Column(length = 50)
+    @Column(length = 50, nullable = false)
     private String brand;
 
-    @Column(length = 50)
+    @Column(length = 50, nullable = false)
     private String model;
 
-    @Column(length = 15)
+    @Column(length = 15, nullable = false)
     private String code;
 
     public Rubber(){}
-
-    public int getIdRubber() {
-        return idRubber;
-    }
-
-    public void setIdRubber(int idRubber) {
-        this.idRubber = idRubber;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public String getCode() { return code; }
-
-    public void setCode(String code) { this.code = code; }
 }
