@@ -1,7 +1,10 @@
 package com.tabletennis.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 
+@Getter
+@Setter
 @Entity
 @Table(name="Coach")
 public class Coach {
@@ -18,28 +21,4 @@ public class Coach {
     private String name;
 
     public Coach(){}
-
-    public Integer getIdCoach() {
-        return idCoach;
-    }
-
-    public void setIdCoach(Integer idCoach) {
-        this.idCoach = idCoach;
-    }
-
-    public Club getClub() {
-        return club;
-    }
-
-    public void setClub(Club club) {
-        this.club = club;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
