@@ -36,13 +36,13 @@ public interface PlayerRepository extends JpaRepository <Player, Integer>{
             "CONCAT(br.brand, ' ', br.model), " +
             "CONCAT(cr.brand, ' ', cr.model), " +
             "co.name, p.advtg, p.hand) " +
-            "FROM Player p " +
+            "FROM PlayerTournament pt " +
+            "JOIN pt.player p " +
             "LEFT JOIN p.club c " +
             "LEFT JOIN p.blade b " +
             "LEFT JOIN p.blackRubber br " +
             "LEFT JOIN p.coloredRubber cr " +
             "LEFT JOIN p.coach co " +
-            "JOIN p.playerTournaments pt " +
             "WHERE pt.tournament.idTournament = :tournamentId")
     List<PlayerDTO> findPlayersByTournament(@Param("tournamentId") Integer tournamentId);
 
