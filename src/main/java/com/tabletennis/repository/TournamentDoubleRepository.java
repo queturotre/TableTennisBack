@@ -19,5 +19,6 @@ public interface TournamentDoubleRepository extends JpaRepository<TournamentDoub
             "AND (d.playerA.idPlayer = :playerId OR d.playerB.idPlayer = :playerId)")
     Optional<TournamentDouble> findByTournamentAndPlayer(
             @Param("tournamentId") Integer tournamentId,
-            @Param("playerId") Integer playerId);
+            @Param("playerId") Integer playerId
+    );
 }
