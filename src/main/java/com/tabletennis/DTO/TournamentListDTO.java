@@ -15,8 +15,7 @@ public class TournamentListDTO {
         this.category = category;
     }
 
-    public TournamentListDTO() {
-    }
+    public TournamentListDTO() {}
 
     public int getIdTournament() {
         return idTournament;
