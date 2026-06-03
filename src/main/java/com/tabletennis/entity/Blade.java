@@ -20,4 +20,5 @@ public class Blade {
     private String model;
 
     public Blade(){}
+
 }

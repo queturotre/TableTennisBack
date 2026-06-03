@@ -24,4 +24,5 @@ public class BladeResponseDTO {
     public void setModel(String model) {
         this.model = model;
     }
+
 }
